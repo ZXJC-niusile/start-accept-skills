@@ -1,0 +1,4 @@
+interface:
+  display_name: "科研代码审计"
+  short_description: "Audit research implementation against code evidence."
+  default_prompt: "Use $sa-code-audit to inspect this implementation against the supplied research protocol."

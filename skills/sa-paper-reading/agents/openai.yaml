@@ -1,0 +1,4 @@
+interface:
+  display_name: "Paper Reading"
+  short_description: "Read and compare CS papers with traceable evidence"
+  default_prompt: "Use $sa-paper-reading to explain the supplied paper and identify its evidence boundaries."

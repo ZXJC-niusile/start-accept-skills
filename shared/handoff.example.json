@@ -1,0 +1,9 @@
+{
+  "goal": "Assess the measured latency claim",
+  "inputs": [{"source": "results.csv", "version": "sha256:example-not-a-real-hash"}],
+  "evidence": [{"kind": "experiment_measurement", "source": "results.csv", "locator": "run IDs r1-r4", "version": "sha256:example-not-a-real-hash"}],
+  "conclusions": ["Illustrative example only; replace with verified conclusions."],
+  "unknowns": ["Hardware comparability is not yet verified."],
+  "outputs": [],
+  "next_step": {"owner": "sa-experiment-analysis", "task": "Check matched configurations before comparing latency."}
+}

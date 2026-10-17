@@ -1,0 +1,6 @@
+interface:
+  display_name: "SA Figure Production"
+  short_description: "Create editable research figures and inspect exports"
+  default_prompt: "Use $sa-figure-production to design and produce this research figure with editable source."
+policy:
+  allow_implicit_invocation: true

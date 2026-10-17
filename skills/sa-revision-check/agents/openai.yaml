@@ -1,0 +1,6 @@
+interface:
+  display_name: "Revision Check"
+  short_description: "Verify revisions and compare versions with fixed criteria"
+  default_prompt: "Use $sa-revision-check to verify these revisions against the previous issues."
+policy:
+  allow_implicit_invocation: true

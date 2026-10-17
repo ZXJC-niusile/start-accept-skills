@@ -1,0 +1,111 @@
+{
+  "source_root": "../skills (relative to package root)",
+  "unique_skills": 17,
+  "files": [
+    {
+      "path": "academic-paper-reviewer/SKILL.md",
+      "sha256": "f006520307ce207c656d75fb7cadc37c6344d4bbee8e9af48d3115554010f4da",
+      "read_by": "integrator or assigned implementation agent"
+    },
+    {
+      "path": "benchmark-paper-template/SKILL.md",
+      "sha256": "ab40a1dfcbce2e7859df76795118d264afa5acbe788627a47f064736a777caf6",
+      "read_by": "integrator or assigned implementation agent"
+    },
+    {
+      "path": "ccf-paper-reviewer/SKILL.md",
+      "sha256": "ba9e673a90ae2111a9441910cea8582859db624a218cb84a1d1853d3405a1c3b",
+      "read_by": "integrator or assigned implementation agent"
+    },
+    {
+      "path": "deerflow-paper-review/SKILL.md",
+      "sha256": "a0285baaeacc916bf45751c06db37745b195ddd4ec30e271ec1472f6cd48e8aa",
+      "read_by": "integrator or assigned implementation agent"
+    },
+    {
+      "path": "experiment-data-analysis/SKILL.md",
+      "sha256": "60cfc91388add0a204781e4b2d386bff7500b8beb0f6df55b0d16a98be5ef5ad",
+      "read_by": "integrator or assigned implementation agent"
+    },
+    {
+      "path": "figure-designer/SKILL.md",
+      "sha256": "bb43872f2e77d570cbd160616066fab8fbc571205b5328c9c2967f93f920b38c",
+      "read_by": "integrator or assigned implementation agent"
+    },
+    {
+      "path": "humanizer/SKILL.md",
+      "sha256": "77071445054a3d8a26c3b665b5784204d34af1cadff9a00daa854b0623410042",
+      "read_by": "integrator or assigned implementation agent"
+    },
+    {
+      "path": "idea-evaluator/SKILL.md",
+      "sha256": "9380170484f657f9177c2e3a1a2cb5950005338eb93b839c6eb08e5559c9cf3d",
+      "read_by": "integrator or assigned implementation agent"
+    },
+    {
+      "path": "intro-drafter/SKILL.md",
+      "sha256": "635c5254127dcc844c8c61b487ee2d7048dda05737def291a8ddd261ac699499",
+      "read_by": "integrator or assigned implementation agent"
+    },
+    {
+      "path": "investigate-codebase/SKILL.md",
+      "sha256": "6903ec4a09c819076dad388f3df5724e11299cb5f0510a6f94059252ebebc8d6",
+      "read_by": "integrator or assigned implementation agent"
+    },
+    {
+      "path": "let-accept-review/SKILL.md",
+      "sha256": "9b5759178d755e0f7eba6fc1272ada4482782e8c3368d909b45b2573eb8ce957",
+      "read_by": "integrator or assigned implementation agent"
+    },
+    {
+      "path": "paperjury/SKILL.md",
+      "sha256": "3b05ddbb4448850ac8eeff66351c8794deea8034bdfeb78fcc215b73076707e6",
+      "read_by": "integrator or assigned implementation agent"
+    },
+    {
+      "path": "peer-review/SKILL.md",
+      "sha256": "4591645c59b057d0d12875134ab02560ca15fc073c9a47a6d21ff74ab0fb2c73",
+      "read_by": "integrator or assigned implementation agent"
+    },
+    {
+      "path": "pre-submission-reviewer/SKILL.md",
+      "sha256": "c4ee9268905dbc6b1200606c459bb262fec10a5991eaa8115c14cd86da142fcb",
+      "read_by": "integrator or assigned implementation agent"
+    },
+    {
+      "path": "scientific-figure-making/SKILL.md",
+      "sha256": "121cdc63bc6828e45f11332cb421641c81ab42bfdb149a3c2d0829daaa411b19",
+      "read_by": "integrator or assigned implementation agent"
+    },
+    {
+      "path": "tech-paper-template/SKILL.md",
+      "sha256": "7e0746fc51a42b19e4934ec9d53ea7570c2f85d14e874bfa1497822e5da1a9c0",
+      "read_by": "integrator or assigned implementation agent"
+    },
+    {
+      "path": "vibe-research-workflow/SKILL.md",
+      "sha256": "04b3e7bbcb290553154bbdac72713ab522f3267e47b929cbe68598949098e59d",
+      "read_by": "integrator or assigned implementation agent"
+    },
+    {
+      "path": "investigate-codebase/references/analyze-pr-impact.md",
+      "sha256": "4a86ed699ee80b3faea85818d8ad4903e4add27d85e0a3e68aab8bedb5cb826f",
+      "read_by": "integrator"
+    },
+    {
+      "path": "investigate-codebase/references/orient-large-codebase.md",
+      "sha256": "7750fe2882d450e14a54e2b1ae525f6dff3ae4c00fa5fd50df2ee91d09ef1c89",
+      "read_by": "integrator"
+    },
+    {
+      "path": "investigate-codebase/references/trace-runtime-flow.md",
+      "sha256": "4315234b506194253cf1f377c5107781f599a8388616d6e973438cdbbb4cafd6",
+      "read_by": "integrator"
+    },
+    {
+      "path": "investigate-codebase/references/verify-generated-code.md",
+      "sha256": "5416e97b0a82d02c3f8d4c16cc1e011782ebb46af1c937692dedf5cf5a007322",
+      "read_by": "integrator"
+    }
+  ]
+}

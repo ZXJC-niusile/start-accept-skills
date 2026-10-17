@@ -1,0 +1,6 @@
+interface:
+  display_name: "Submission Check"
+  short_description: "Check manuscript presentation and submission requirements"
+  default_prompt: "Use $sa-submission-check to check presentation and submission requirements for this manuscript."
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Research Design"
+  short_description: "Specify testable CS methods, benchmarks, and studies"
+  default_prompt: "Use $sa-research-design to turn the chosen question into a testable research plan."

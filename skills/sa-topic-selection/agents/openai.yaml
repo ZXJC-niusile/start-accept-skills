@@ -1,0 +1,4 @@
+interface:
+  display_name: "Topic Selection"
+  short_description: "Compare research directions, novelty, and feasibility"
+  default_prompt: "Use $sa-topic-selection to compare candidate research directions within my constraints."

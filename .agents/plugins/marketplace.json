@@ -1,0 +1,20 @@
+{
+  "name": "start-accept-research",
+  "interface": {
+    "displayName": "Start Accept Research"
+  },
+  "plugins": [
+    {
+      "name": "start-accept-skills",
+      "source": {
+        "source": "local",
+        "path": "./"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+interface:
+  display_name: "SA Experiment Analysis"
+  short_description: "Audit research results and bound empirical claims"
+  default_prompt: "Use $sa-experiment-analysis to audit these results and identify supported claims."
+policy:
+  allow_implicit_invocation: true

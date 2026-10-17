@@ -1,0 +1,9 @@
+{
+  "schema_version": 1,
+  "goal": "Analyze and explain a synthetic result",
+  "run_id": "example-only",
+  "stages": {
+    "analysis": {"status": "pending", "inputs": {"results": "unknown"}, "depends_on": [], "outputs": []},
+    "writing": {"status": "pending", "inputs": {}, "depends_on": ["analysis"], "outputs": []}
+  }
+}
