@@ -10,15 +10,17 @@ Work from literature and topic selection through study design, code auditing, ex
 
 ## Install
 
-Download and extract the complete release or clone the repository. From the root containing `plugin.json`, run these commands with an authenticated Codex CLI that supports plugins:
+Clone the repository for direct installation. With an authenticated Codex CLI supporting plugins, run:
 
 ```sh
+git clone https://github.com/ZXJC-niusile/start-accept-skills.git
+cd start-accept-skills
 codex plugin marketplace add .
 codex plugin add start-accept-skills@start-accept-research
 codex plugin list --marketplace start-accept-research --json
 ```
 
-The package includes `.agents/plugins/marketplace.json`. Use the skills on your next turn; restart the desktop client if its catalog has not refreshed. Use the full names shown in the skill picker. Keep the downloaded directory as the local marketplace update source.
+The ZIP is an optional fixed-version download; SHA-256 checks download integrity. Neither is required for installation. See the installation guide below for activation, updates and removal.
 
 Do not copy individual skill folders: they depend on bundled `shared/`, `scripts/` and sibling skills. Existing skills are not disabled. Select this package explicitly when overlapping skills are installed. Without installing, ask an agent to read `<package>/skills/<skill-name>/SKILL.md` directly.
 

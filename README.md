@@ -10,15 +10,17 @@
 
 ## 安装
 
-下载完整发布包并解压，或克隆仓库。进入包含 `plugin.json` 的根目录，在已登录且支持插件的 Codex CLI 执行：
+推荐直接克隆仓库安装。先登录支持插件的 Codex CLI，然后执行：
 
 ```sh
+git clone https://github.com/ZXJC-niusile/start-accept-skills.git
+cd start-accept-skills
 codex plugin marketplace add .
 codex plugin add start-accept-skills@start-accept-research
 codex plugin list --marketplace start-accept-research --json
 ```
 
-包内已提供 `.agents/plugins/marketplace.json`。安装后在新一轮对话使用；桌面目录未刷新时重启客户端。以技能选择器显示的完整名称为准。保留下载目录，供本地 marketplace 更新使用。
+ZIP 是可选的固定版本下载方式；SHA-256 用于核对下载完整性，二者均不是安装前提。安装后的使用、更新与卸载见下方安装指南。
 
 不要只复制单个技能目录：技能依赖包内 `shared/`、`scripts/` 和相邻技能。安装不会停用旧技能，首次使用建议显式选择本包技能。不安装也可以直接请求代理读取 `<包目录>/skills/<技能名>/SKILL.md`。
 
