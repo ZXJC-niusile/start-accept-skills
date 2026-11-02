@@ -23,4 +23,4 @@ Input: “Our development pilot suggests that the method may reduce unnecessary 
 
 Output: “Our development pilot suggests the method may reduce unnecessary revalidation, but this remains unconfirmed on held-out repositories.”
 
-这是一次范围有限的安装与调用检查，不是全部科研能力验收。原始轨迹与本机路径仅保留在开发评测目录，不纳入公开包。This scoped smoke check does not establish all scientific behaviors or desktop UI activation. Raw traces and local paths remain outside the public distribution.
+This scoped smoke check does not establish all scientific behaviors or desktop UI activation. Raw traces and local paths remain outside the public distribution.

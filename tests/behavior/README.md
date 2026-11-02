@@ -15,5 +15,4 @@ input mutations. Output length and file reads are descriptive, not quality score
 Evaluate implicit skill routing separately: explicitly naming a skill does not test
 discovery. For stronger evidence use fresh sessions per case and repeated trials.
 
-The [2026-11-02 record](../../docs/validation/2026-11-02-behavior.md) used one fresh
-worker per revision and six tasks within each worker, so within-arm context was shared.
+Recorded execution: [2026-11-02 comparison](../../docs/validation/2026-11-02-behavior.md).

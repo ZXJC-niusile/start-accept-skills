@@ -2,15 +2,9 @@
 
 ## 当前可复跑检查
 
-```sh
-python -m pip install -r requirements-dev.txt
-python -B -m unittest discover -s tests -v
-python scripts/validate_package.py
-```
+运行命令见 [README 开发部分](../README.md#develop)。确定性回归覆盖状态保留、哈希登记、台账历史、BOM、参数约束、包结构及文档断链，不运行模型。
 
-确定性回归覆盖状态保留、哈希登记、台账历史、BOM、参数约束、包结构及文档断链。它不运行模型。
-
-[2026-11-02 行为对比](validation/2026-11-02-behavior.md)保存了六个固定输入、修改前后实际回答和判定依据。两组均完成这些有限任务；部分新版回答更短，一项少读参考文档，另有回答更长。单次样本不证明普遍提效或质量提升。
+[2026-11-02 行为对比](validation/2026-11-02-behavior.md)记录了六个任务的前后回答、判定和评测限制；两组均满足本次判定标准。安装与调用记录见[宿主验收](HOST_ACCEPTANCE.md)。这些历史记录仅对应其中注明的提交。
 
 ## 历史记录
 

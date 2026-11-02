@@ -4,15 +4,13 @@ Goal / question:
 Input sources and versions:
 Figure type and intended size:
 Data filters, transformations and uncertainty definition:
-Editable source:
 Reproduction command and tool versions:
-Exports and preview:
-AI-generated image and generation prompt, if applicable:
+Generation prompt, if an AI image was requested:
 
 | Artifact | File / version | Production status | Inspection evidence |
 |---|---|---|---|
 | Editable source | | created / pending / blocked | |
-| Export rendered from that source | | created / pending / blocked | |
+| Export and preview rendered from that source | | created / pending / blocked | |
 | AI-generated raster, if requested | | created / pending / blocked / not applicable | |
 
 Actual raster dimensions / intended placement size:
