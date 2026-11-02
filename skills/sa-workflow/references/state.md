@@ -1,11 +1,22 @@
-# Minimal resumable state
+# Resumable state
 
-State is optional for a one-stage answer. For a continuing project, store JSON with `schema_version: 1`, `goal`, `run_id`, and a `stages` object. Each stage has `status`, `inputs` (map of source ID to version string), `depends_on` (stage IDs), `outputs` (paths), and optionally `decision` or `reason`. Stages need not include every skill. Record missing versions explicitly as `unknown`; never invent hashes.
+Use state only for continuing multi-stage projects. Store `schema_version: 1`, `goal`, `run_id`, and a `stages` object. Each stage records `status`, `inputs` (source-to-version map), `depends_on`, `outputs`, and optional `decision` or `reason`. Completed output hashes use `output_versions`. Record unavailable versions as `unknown`; see the [shape example](state.example.json).
 
-Use [example](state.example.json) as a shape, not as actual completion evidence. The coordinator writes state atomically and keeps distinct run directories. Before relying on completed work, resolve current versions from source artifacts. From the project directory, run `python SA/scripts/validate_artifacts.py state PATH` (`SA` is the package path) to check structural integrity. This validates state, not the underlying research.
+## Status rules
 
-For actual completion/resumption, use [local operations](../../../shared/LOCAL_OPERATIONS.md): register sources, record reviewed output hashes in `output_versions`, verify files, and save with a lock and expected prior hash. `resume` detects changed/missing inputs and outputs of started or completed work, marks it and its transitive dependents stale, and reports next candidates. Pending, needs_decision and not_applicable stages keep their status; unverifiable inputs or upstream changes are reported for them in `status_preserved_notes`, so an unstarted stage with `unknown` inputs is not called stale. It never executes stages or certifies scientific correctness. Legacy states remain structurally readable; missing hashes require rechecking before file-verified completion.
+- `pending`: work has not started. Input gaps do not make it stale.
+- `active`: interrupted work needs inspection before retrying.
+- `complete`: a deliverable exists and its required checks are satisfied.
+- `stale`: started/completed work needs rechecking against changed or missing evidence.
+- `needs_decision`: an unresolved choice; preserve its recorded decision context.
+- `not_applicable`: a justified omission with a reason; dependents must still have the inputs they need.
 
-`scripts/validate_artifacts.py stale STATE CHANGES` returns a revised JSON on stdout, without writing. CHANGES is a JSON map of source IDs to new versions. A stage recording a different version, and every transitive dependent, becomes `stale` if it was active, complete or already stale; the comparison is equality, not version ordering. Pending, needs_decision and not_applicable stages keep their status and recorded decision or reason. The caller reviews and saves that result. Completed outputs remain on disk. Stale work must be rechecked against the changed source before completion is restored. A dependency's `not_applicable` status requires a reason and is acceptable only if the dependent stage actually has the inputs it needs.
+`resume` checks current files and propagates recheck requirements through dependencies. Only active, complete or already stale stages can become stale. Other statuses retain their meaning; `status_preserved_notes` reports their input/dependency gaps. Next candidates are proposals, not automatic execution or verified readiness.
 
-Equivalent relative path spellings are normalized. Unknown source IDs or conflicting aliases are errors, not silent no-ops. Keep logical source IDs stable and case-sensitive.
+Manual `stale` compares supplied versions for equality, not chronological order. It preserves the same protected statuses and returns proposed JSON without writing. Source IDs normalize equivalent relative paths; unknown IDs or conflicting aliases are errors. Logical IDs remain case-sensitive.
+
+## Persistence
+
+The coordinator writes canonical state; workers return proposals. Use the user's location or `.start-accept/state.json`, source registries under `.start-accept/`, and versioned stage artifacts under `.start-accept/<run-id>/`. Retain prior evidence.
+
+From the research project directory, check structure with `python "SA/scripts/validate_artifacts.py" state PATH`, replacing `SA` with the package's absolute path. For source registration, reviewed-output recording, file verification and locked saves, use [local operations](../../../shared/LOCAL_OPERATIONS.md). Structural validity and byte identity do not establish scientific correctness. Legacy complete stages without hashes require rechecking before file-verified completion.

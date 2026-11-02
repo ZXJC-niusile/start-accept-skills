@@ -15,7 +15,7 @@ codex plugin marketplace add .
 codex plugin add start-accept-skills@start-accept-research
 ```
 
-保留完整仓库，技能依赖共享资源。更新和卸载见[安装指南](docs/INSTALL.md)。
+保留完整仓库，技能依赖共享资源。更新和卸载见[安装指南](docs/INSTALL.zh-CN.md)。
 
 ## 使用
 
