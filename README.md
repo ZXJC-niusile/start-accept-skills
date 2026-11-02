@@ -1,12 +1,12 @@
 # start-accept-skills
 
-中文 · [English](README.en.md)
+English · [中文](README.zh-CN.md)
 
-面向计算机科研的 11 个技能，覆盖文献阅读、研究设计、写作、审稿和项目衔接。可以从任意阶段开始。
+11 skills for computer-science research, from literature and study design to writing, review and project coordination. Start at any stage.
 
-## 安装
+## Install
 
-使用已登录且支持插件的 Codex CLI：
+With an authenticated Codex CLI supporting plugins:
 
 ```sh
 git clone https://github.com/ZXJC-niusile/start-accept-skills.git
@@ -15,42 +15,42 @@ codex plugin marketplace add .
 codex plugin add start-accept-skills@start-accept-research
 ```
 
-保留完整仓库，技能依赖共享资源。更新和卸载见[安装指南](docs/INSTALL.md)。
+Keep the complete repository: skills depend on shared resources. See the [installation guide](docs/INSTALL.md) for updates and removal.
 
-## 使用
+## Use
 
-在请求中指定技能，附上材料和目标，例如：
+Name the skill and provide your materials and objective. For example:
 
-- `用 sa-paper-reading 精读这篇论文，解释方法和证据。`
-- `用 sa-paper-writing 压缩这一段，保留数字、引用和必要限定。`
-- `用 sa-revision-check 核对这些审稿意见是否已解决。`
-- `用 sa-workflow 根据现有材料继续这个研究项目。`
+- `Use sa-paper-reading to explain this paper's method and evidence.`
+- `Use sa-paper-writing to shorten this paragraph, preserving numbers, citations and qualifications.`
+- `Use sa-revision-check to verify whether these review issues are resolved.`
+- `Use sa-workflow to continue this research project from the existing artifacts.`
 
-默认中文沟通，论文语言遵循稿件要求。单项任务直接使用对应技能；只有跨阶段工作才需要流程协调和状态记录。
+Communication defaults to Chinese; request another language as needed. Manuscript language follows the document. Use a specialist for a single task; coordination and state records are for multi-stage work.
 
-| 技能 | 用途 |
+| Skill | Purpose |
 |---|---|
-| sa-workflow | 协调阶段、恢复项目、交接产物 |
-| sa-paper-reading | 检索、精读和比较文献 |
-| sa-topic-selection | 比较研究方向、新颖性和可行性 |
-| sa-research-design | 设计基线、指标、数据划分和消融 |
-| sa-code-audit | 检查代码实现与研究主张 |
-| sa-experiment-analysis | 分析实验、比较结果、判断结论范围 |
-| sa-paper-writing | 起草、修改、翻译和润色正文 |
-| sa-figure-production | 制作科研图及可编辑图源 |
-| sa-scientific-review | 评审贡献、方法和证据 |
-| sa-revision-check | 核验修改、追踪问题和回归 |
-| sa-submission-check | 检查语言、格式、引用和投稿要求 |
+| sa-workflow | Coordinate stages, resume projects and hand off artifacts |
+| sa-paper-reading | Search, read and compare literature |
+| sa-topic-selection | Compare directions, novelty and feasibility |
+| sa-research-design | Design baselines, metrics, splits and ablations |
+| sa-code-audit | Check implementation against research claims |
+| sa-experiment-analysis | Analyze experiments, compare results and bound conclusions |
+| sa-paper-writing | Draft, revise, translate and polish manuscripts |
+| sa-figure-production | Create research figures and editable sources |
+| sa-scientific-review | Assess contributions, methods and evidence |
+| sa-revision-check | Verify revisions, track issues and identify regressions |
+| sa-submission-check | Check language, formatting, citations and submission requirements |
 
-检索、绘图和编译使用宿主已有工具。状态脚本需要 Python 3.10+，操作见[本地操作](shared/LOCAL_OPERATIONS.md)。
+Search, figure production and compilation use host tools. State scripts require Python 3.10+; see [local operations](shared/LOCAL_OPERATIONS.md).
 
-## 开发
+## Develop
 
 ```sh
 python -m pip install -r requirements-dev.txt
 python scripts/validate_package.py
 ```
 
-通过 Git 仓库分发和更新，不再提供独立 ZIP 发布包。结构校验不代表科研结论正确或模型效果提升，已有验证范围见[评测记录](docs/EVALUATION.md)。
+Distribution and updates use Git; standalone ZIP releases are discontinued. Structural validation does not establish scientific correctness or improved model performance. See the [evaluation record](docs/EVALUATION.md).
 
-[维护记录](docs/RELEASE.md) · [MIT 许可](LICENSE) · [第三方来源](NOTICE.md)
+[Maintenance history](docs/RELEASE.md) · [MIT license](LICENSE) · [Third-party sources](NOTICE.md)

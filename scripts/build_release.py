@@ -16,7 +16,7 @@ import validate_package
 
 ROOT = Path(__file__).resolve().parents[1]
 FILES = (
-    "README.md", "README.en.md", "NOTICE.md", "plugin.json", "requirements-dev.txt",
+    "README.md", "README.zh-CN.md", "NOTICE.md", "plugin.json", "requirements-dev.txt",
     ".agents/plugins/marketplace.json", ".gitignore",
     "scripts/validate_artifacts.py", "scripts/project_state.py",
     "scripts/validate_package.py", "scripts/build_release.py",
