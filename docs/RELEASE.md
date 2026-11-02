@@ -7,6 +7,7 @@
 ```sh
 python -m pip install -r requirements-dev.txt
 python scripts/validate_package.py
+python -B -m unittest discover -s tests -v
 git diff --check
 ```
 

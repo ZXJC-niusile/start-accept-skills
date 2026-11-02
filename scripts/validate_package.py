@@ -65,18 +65,20 @@ def check(root=ROOT, runtime_only=False):
     if set(names) != EXPECTED or len(names) != len(EXPECTED):
         errors.append("skill inventory: expected exactly 11 unique names")
     # Package instruction links must remain inside the bundle and exist.
-    for directory in (root / "skills", root / "shared"):
-        for path in directory.rglob("*.md"):
-            text = path.read_text(encoding="utf-8")
-            for raw in re.findall(r"\]\(([^)]+)\)", text):
-                target = raw.strip("<>").split("#", 1)[0]
-                if not target or re.match(r"https?://", target):
-                    continue
-                resolved = (path.parent / unquote(target)).resolve()
-                if not resolved.is_relative_to(root.resolve()) or not resolved.exists():
-                    errors.append(f"{path.relative_to(root)}: broken/external package link {target}")
-            if re.search(r"C:[\\/]|\.\./ccf-common|\.\./ccf-paper-writer|\.claude/CLAUDE", text):
-                errors.append(f"{path.relative_to(root)}: nonportable legacy reference")
+    markdown_paths = list(root.glob("*.md"))
+    for directory in ("skills", "shared", "docs", "provenance"):
+        markdown_paths.extend((root / directory).rglob("*.md"))
+    for path in markdown_paths:
+        text = path.read_text(encoding="utf-8")
+        for raw in re.findall(r"\]\(([^)]+)\)", text):
+            target = raw.strip("<>").split("#", 1)[0]
+            if not target or re.match(r"https?://", target):
+                continue
+            resolved = (path.parent / unquote(target)).resolve()
+            if not resolved.is_relative_to(root.resolve()) or not resolved.exists():
+                errors.append(f"{path.relative_to(root)}: broken/external package link {target}")
+        if re.search(r"C:[\\/]|\.\./ccf-common|\.\./ccf-paper-writer|\.claude/CLAUDE", text):
+            errors.append(f"{path.relative_to(root)}: nonportable legacy reference")
     eval_dir = root / "evals/cases"
     if runtime_only or not eval_dir.is_dir():
         # Development eval datasets are not distributed (see .gitignore); a
