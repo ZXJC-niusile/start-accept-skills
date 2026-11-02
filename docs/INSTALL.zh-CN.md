@@ -26,7 +26,7 @@ codex plugin list --marketplace start-accept-research --json
 
 从仓库根目录执行。源码更新不会自动刷新安装缓存，应核对已安装的版本和文件。
 
-如果同名 marketplace 仍登记在旧仓库或解压目录，先执行 `codex plugin marketplace remove start-accept-research` 移除旧来源登记，再从当前仓库重跑安装命令。此来源迁移已在 CLI 0.166.0 实测，详见候选版宿主记录。
+如果 marketplace 仍指向旧仓库或解压目录，执行 `codex plugin marketplace remove start-accept-research`，再从当前仓库重跑安装命令。实测见 [CLI 0.166.0 验收](validation/2026-11-02-host.md)。
 
 ## 卸载
 

@@ -2,14 +2,7 @@
 
 通过 Git 仓库分发和更新，不再提供独立 ZIP 发布包。安装步骤见[安装指南](INSTALL.md)。历史发布附件不随本次改动删除或覆盖。
 
-提交前运行：
-
-```sh
-python -m pip install -r requirements-dev.txt
-python scripts/validate_package.py
-python -B -m unittest discover -s tests -v
-git diff --check
-```
+提交前运行 [README 中的开发检查](../README.md#develop)及 `git diff --check`。
 
 脚本行为变更应检查受影响场景。结构校验不代替行为验证，记录见[验证摘要](EVALUATION.md)和[宿主验收](HOST_ACCEPTANCE.md)。`scripts/build_release.py` 仅保留作本地归档工具，不用于发布下载包。
 
@@ -30,7 +23,6 @@ git diff --check
 - 修复状态恢复、产物哈希登记、台账校验和 Windows JSON 读取。
 - 公开检出默认检查运行时结构；缺失开发评测数据时明确报告检查范围。
 - 统一状态文档和模板，补充来源记录；分发改为仅使用 Git。
-
 - 增加可移植回归、完整文档链接校验及六类任务的前后对比证据。
 - 缩小局部任务的默认交付范围，明确已授权组合任务继续完成。
 - 安装说明分为中英文，状态规则集中维护；验证记录按提交区分。

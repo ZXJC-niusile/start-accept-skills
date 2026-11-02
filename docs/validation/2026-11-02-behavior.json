@@ -131,11 +131,11 @@
     "Public record includes exact final responses and normalized command strings, not full shell read output or private absolute paths.",
     "No latency, token-cost or universal quality claim."
   ],
+  "grading": "Both outputs meet the acceptance criterion in each of the six cases; no comparative superiority inferred.",
   "cases": [
     {
       "id": "short_edit",
       "acceptance": "Return one English revision retaining pilot uncertainty and lack of held-out evidence; no unrelated workflow.",
-      "grading": "Both outputs meet this bounded criterion; no comparative superiority inferred.",
       "A": {
         "response": "Our development pilot suggests that the method may reduce unnecessary revalidation, although this finding has not yet been confirmed on held-out repositories.",
         "response_characters": 158,
@@ -186,7 +186,6 @@
     {
       "id": "function_explanation",
       "acceptance": "Explain last row wins and first-key insertion order from the supplied function; no invented execution or repository scan.",
-      "grading": "Both outputs meet this bounded criterion; no comparative superiority inferred.",
       "A": {
         "response": "重复 id 会保留最后一次出现的那条 row：result[row[\"id\"]] = row 会覆盖同一键之前的值。返回值是这些 row 组成的列表，不会合并重复行的字段。Python 3.7+ 中，列表顺序按各 id 首次出现的顺序排列，覆盖值不会移动该键的位置。例如输入 [{\"id\": 1, \"v\": \"a\"}, {\"id\": 2, \"v\": \"b\"}, {\"id\": 1, \"v\": \"c\"}]，返回 [{\"id\": 1, \"v\": \"c\"}, {\"id\": 2, \"v\": \"b\"}]。这是对所给完整函数第 2–5 行的静态分析（code_observation，source），未执行函数，也未检查其他代码。",
         "response_characters": 310,
@@ -235,7 +234,6 @@
     {
       "id": "metric_design",
       "acceptance": "Metric measures correct reuse with no repeated execution among eligible requests; minimum validation; no added output-quality criterion.",
-      "grading": "Both outputs meet this bounded criterion; no comparative superiority inferred.",
       "A": {
         "response": "主指标：有效缓存重复请求免运行率 = 正确返回已有缓存结果且底层计算执行次数增量为 0 的请求数 / 输入完全相同且结果缓存有效的重复请求总数。越高越好；该限定目标的通过条件为 100%。错误、未返回缓存结果或触发重新运行的请求计为失败，不从分母剔除；不评价缓存结果本身的质量。\n\n最小验证：选一个固定输入，首次运行生成缓存并记录缓存内容及底层计算调用计数；确认缓存有效后，原样再次提交一次。检查返回的是对应缓存结果，且调用计数未增加。该重复请求满足两项条件即为 1/1，否则为 0/1。首次建缓存的请求不计入分母。计数应放在实际计算入口，不能只依据系统自报的 cache hit。一次检查只能验证这个用例；这是验证设计，尚未执行。",
         "response_characters": 316,
@@ -294,7 +292,6 @@
     {
       "id": "version_comparison",
       "acceptance": "Compare claim strength under the same criteria; no invented historical review IDs, experimental proof or closure counts.",
-      "grading": "Both outputs meet this bounded criterion; no comparative superiority inferred.",
       "A": {
         "response": "v2 的主张明显收窄，依据相同的两个文字维度比较：\n\n| 维度 | v1 | v2 |\n|---|---|---|\n| 适用范围 | “generalizes to unseen repositories” 宣称可泛化到未见仓库 | “two development repositories” 将结果限定于两个开发仓库 |\n| 确定性 | 将泛化表述为已成立的结论 | “remains untested” 明确泛化尚未验证 |\n\n文字上的进步是区分开发集结果与尚未测试的泛化能力。v2 还新增了开发仓库结果改善的陈述，但仅凭这两句话无法核验其真实性。此次只比较文字主张强度，对差异判断置信度高；不判断科学结论是否成立或投稿是否就绪，也不涉及历史审稿问题的关闭。",
         "response_characters": 332,
@@ -358,7 +355,6 @@
     {
       "id": "review_and_edit",
       "acceptance": "Explain unsupported significance/generalization and supply a bounded English rewrite without renewed confirmation.",
-      "grading": "Both outputs meet this bounded criterion; no comparative superiority inferred.",
       "A": {
         "response": "给定证据只支持两个开发仓库上的均值从 10 提高到 12。“significantly” 缺乏显著性检验支持；“across repositories” 未限定开发仓库范围，容易扩大结论。即便把 significantly 理解为幅度较大，目前也没有足够依据作这一判断；总体均值提高也不等于每个仓库都提高。以下改写依据用户提供的证据摘要，未独立复现实验：\n\nAcross two development repositories, our method achieved a mean score of 12 compared with 10 for the baseline, with higher scores indicating better performance; statistical significance was not tested, and generalization to held-out repositories remains untested.",
         "response_characters": 442,
@@ -447,7 +443,6 @@
     {
       "id": "resume_project",
       "acceptance": "Run read-only status checks; propose stale analysis; preserve pending/not_applicable/needs_decision and reasons; no experiments or input mutation.",
-      "grading": "Both outputs meet this bounded criterion; no comparative superiority inferred.",
       "A": {
         "response": "已完成只读恢复检查，未修改 state.json 或其他输入，也未运行实验。\n\n结构检查通过（scope: structure_only），不代表科研结论有效。resume 的只读输出将 analysis 从 complete 标为 stale：当前 results.csv 和 analysis.md 的 SHA-256 均不匹配状态中记录的全零哈希。results.csv 当前含 baseline=10、proposal=12；analysis.md 仅写着“Old analysis requiring recheck.”，不能继续作为已完成分析使用。哈希不匹配说明当前文件无法对应记录版本，不能据此还原此前内容。\n\n保留既有状态和决定：writing 仍为 pending；experiment 仍为 not_applicable，保留“Theory-only extension; empirical expansion was not authorized”；topic 仍为 needs_decision，保留“User has not chosen the extension”。三者均有依赖 analysis 需要复核的提示，而非一律改成 stale。上述变化只在命令输出的恢复建议中，原状态文件未写回。\n\n下一步候选仅为 analysis：由分析阶段负责人复核当前结果来源、指标含义和分析内容，再记录核验后的输入、输出版本，才能恢复完成状态并推进 writing。扩展方向仍待原有决策解决；不启动已判定不适用且未授权的实验。本轮到状态检查与下一步说明为止，未执行该分析复核。",
         "response_characters": 698,
