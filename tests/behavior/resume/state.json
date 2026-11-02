@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "goal": "Resume a study",
+  "run_id": "fixture",
+  "stages": {
+    "analysis": {
+      "status": "complete",
+      "inputs": {
+        "results.csv": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "depends_on": [],
+      "outputs": [
+        "analysis.md"
+      ],
+      "output_versions": {
+        "analysis.md": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      }
+    },
+    "writing": {
+      "status": "pending",
+      "inputs": {},
+      "depends_on": [
+        "analysis"
+      ],
+      "outputs": []
+    },
+    "experiment": {
+      "status": "not_applicable",
+      "reason": "Theory-only extension; empirical expansion was not authorized",
+      "inputs": {},
+      "depends_on": [
+        "analysis"
+      ],
+      "outputs": []
+    },
+    "topic": {
+      "status": "needs_decision",
+      "decision": "User has not chosen the extension",
+      "inputs": {},
+      "depends_on": [
+        "analysis"
+      ],
+      "outputs": []
+    }
+  }
+}

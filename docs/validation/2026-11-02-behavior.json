@@ -1,0 +1,587 @@
+{
+  "date": "2026-11-02",
+  "protocol": "One fresh subagent per arm, six sequential tasks per agent, explicitly named skills. Same inherited parent model configuration; exact backend/model snapshot and effort not independently captured. No prior expected answers supplied to workers. Maintainer agent graded actual outputs after execution; not blinded or independently graded.",
+  "arms": {
+    "A": {
+      "source_commit": "951292dc9ca36053b0ff8d5acef3afdeeb8461af",
+      "input_hashes": {
+        "state.json": "011a28f24aa1af896d1363db9838a434005e440f24a806a41f2366dd16d11fe7",
+        "results.csv": "8efb51e2b5ff1b578c96d175bdc0d3fda0f034e785af39dd2da91936d176c9e8",
+        "analysis.md": "efb1524ac22b43b0c8ced879b6fe6854c005f526b6806a08f1158aa0dc342bda"
+      },
+      "package_hashes": {
+        "skills/sa-code-audit/SKILL.md": "81f76fa79e1c04c0b63af9e31332c654c0960a4c56ee2ef286ae399ded07c212",
+        "skills/sa-experiment-analysis/SKILL.md": "fb64628881a65cc41f364a7d0693d4225a7506643df583521dfd768ccf9aeee6",
+        "skills/sa-figure-production/SKILL.md": "f145d29efba1c356b4dd79233d69992d7eb86f3e87335f16db3d596bb4ffe1fd",
+        "skills/sa-paper-reading/SKILL.md": "abe4fa73c5389e78737cd755ca6908003afeb99a4562d860a12e9d9a0b7919f1",
+        "skills/sa-paper-writing/SKILL.md": "ad812e821a02d95a43def54348b3b11416de4a3a4437ba71d732e9aa473ea925",
+        "skills/sa-research-design/SKILL.md": "d16c94c40c298d8b4116833c33ee311711074e157e26ba3685ba93009617e0de",
+        "skills/sa-revision-check/SKILL.md": "71d1d36551c93e4bb8aac1d73f120b01c21018153a0392272c62089363e4fa93",
+        "skills/sa-scientific-review/SKILL.md": "216194ff5c7fc9a0755caed42344948f5893909eb73a9f96699ad3d7938f0886",
+        "skills/sa-submission-check/SKILL.md": "7ff760566a9a37d54482b03d44e1984cfb91ba97a2c596d28b1702492dc5645d",
+        "skills/sa-topic-selection/SKILL.md": "b3124c69f91856857dd30fc8b6867132ea7db72cae90f0ec5d0291dc44807228",
+        "skills/sa-workflow/SKILL.md": "501c96e1eac8fe257a014f64d4980e723d59383b5761f66ed1933a5d76cf6fef",
+        "skills/sa-workflow/agents/openai.yaml": "80bd50ef4ec30d0d6ddaeb104e65b61af8e49dd7b5bf9f5a7abfb1e25a62d43d",
+        "skills/sa-workflow/references/state.example.json": "a56ac7f4786fa752cc6e2c823e66cfff3cd366e3a62b3d5521f9fd4e6cfc9bce",
+        "skills/sa-workflow/references/state.md": "b9706ce7176de62a4017461f9b8d8177ff43088b6afb932a64f38b931286157a",
+        "skills/sa-topic-selection/agents/openai.yaml": "879552505ed92e0e8d802c91fd62667e4df7c34159d3ba3442ce5756b2bd5823",
+        "skills/sa-topic-selection/references/decision-table.md": "51abd0b3b98c50396727bbcf2f1f4dcf21992a06021a2a3890eddb446c6c53a0",
+        "skills/sa-submission-check/agents/openai.yaml": "b2eff9d8d0af8069f6020017db864ebf63644e7bd0e09d5390423b8e26710a25",
+        "skills/sa-submission-check/references/checklist.md": "ee8e0029c50b2b622919b49180998c3bf32acc2f6a5d93ac9a36405e75b2024f",
+        "skills/sa-submission-check/templates/report.md": "8bea50d4ec5e3e276fc16f680c7b84f16ebf848d684e97fb0d612ab7d1ce44e9",
+        "skills/sa-scientific-review/agents/openai.yaml": "fb08238af543968e5bb741f81b33fd91502617dd8c0f320f8cd32cb2f57e9555",
+        "skills/sa-scientific-review/references/panels.md": "368f4e113d710be9d7c6d52747016ddd0bc4ae8e3d7d6993eb8287467411a13e",
+        "skills/sa-scientific-review/references/scientific-criteria.md": "6a2f1486cab61622709779285a11925e2951fdc8ab40e52a4a28e01645a62ff5",
+        "skills/sa-scientific-review/templates/report.md": "58b31e24fe529d7339fdf80f14772ab9476624b059f1f91700428bd1994c8a42",
+        "skills/sa-revision-check/agents/openai.yaml": "d66c84962345028706bfea1572b8660f6b6a7dbc32291398489c731787ecbc5e",
+        "skills/sa-revision-check/references/verification.md": "4c4e692368acaf22c371f58b1152b1584b30650f4a0d0612be9b800c5e9981e5",
+        "skills/sa-revision-check/templates/report.md": "5dc577d3ccc882b3564610be5684dcaab32b3bad0a10680d01b788e627680738",
+        "skills/sa-research-design/agents/openai.yaml": "171b5f2090acc6d1063bd5b095e70808f20d41298005436523884fa24511ab52",
+        "skills/sa-research-design/references/study-modes.md": "acaf9a784d367c46092c33041ecbb3314a4d6753abba47a3882af4f1335fff41",
+        "skills/sa-paper-writing/agents/openai.yaml": "db0df88522cc950e66614ad3891b491a88de260ef72aefd96adf96f935105377",
+        "skills/sa-paper-writing/references/section-guidance.md": "e4a4381456880d08eb9eec4e43c5836609ac5c74ff0cb7d5726e66f30c22b6e4",
+        "skills/sa-paper-writing/templates/writing-handoff.md": "c64c55018b0a86572aa0c91c199e2543da12d908a447437eff47ca265cf4d40f",
+        "skills/sa-paper-reading/agents/openai.yaml": "f844fa82c8879fe59b62916c45954b3335584d893074c515659225a72300a8ad",
+        "skills/sa-paper-reading/references/literature-card.md": "42dd1c3e3eaabe30339632889cc972fbe3d5e72679f05cb431894e1af27da541",
+        "skills/sa-figure-production/agents/openai.yaml": "69a139ec47386bf8a9057a62b4555e84f9b3a84299816622fef6bf745bb0ec4b",
+        "skills/sa-figure-production/references/production-guide.md": "f4b5cbe8be182242218c9fb22e8819433847ee1c7ceb4be1a4c784218d5f11ed",
+        "skills/sa-figure-production/templates/figure-record.md": "841b2f5a4efc783ecf990d01d1a3fffd3276048f0ab78311ebf634b42784e914",
+        "skills/sa-experiment-analysis/agents/openai.yaml": "cbf7092a2e705d2b514761e7fdf6c5b0fbaf6a38ba2489809818a4d9e6497c8f",
+        "skills/sa-experiment-analysis/references/analysis-checks.md": "44ce424f1f0ef72fc3be1cf4b1530e229a94bd12d89725a6bae472d29c3e9db2",
+        "skills/sa-experiment-analysis/templates/claim-table.md": "454faf7f6dca918e000ef5198e0df78723eeec871950113f4d7298f8c4232ea9",
+        "skills/sa-code-audit/agents/openai.yaml": "ab1738924743e7e9eb32bcc1eb2b4b72f86c85ff75fc7ec5ef6c7a4204cad6c4",
+        "shared/CONTRACT.md": "2aed48fb2cb2dfdd3851d7e0b824636562ace4c693a3cc72161c84220f248d2a",
+        "shared/EVIDENCE.md": "4429e518ea66cabb12f65755a6c50bcc8f6b65fcec74409e0d0cd641277865f4",
+        "shared/handoff.example.json": "b17fa9d03ed53289335e40456577ee80916f0593459cbccc568b42a9a230913e",
+        "shared/HANDOFF.md": "09bf8cd1711822c3067defd0c2cb3539ab7506823365698f291f5f8b9d241c9f",
+        "shared/ISSUES.md": "d6c05ef2ddcce059ee16ffc5d492f5095a3077fd27e8af3ddff0706f4297aed2",
+        "shared/LOCAL_OPERATIONS.md": "1e17ad8ff62cdb31351afc648f563cbaa861cff49fe7ebae0060eeb6d159b140",
+        "scripts/build_release.py": "4756932c2ad8b0839abcd8b25ac78e30418230eab8d138590bb87efebb3ec98b",
+        "scripts/project_state.py": "abe710c2bb4df66844b46d48d7cfd3b66786f77babb4dce07f34b4b8b327f94f",
+        "scripts/validate_artifacts.py": "49fc67d5b0562e4d457b44dbccab7d21a0977aada7fb0c10a9bb79f1a9fa1930",
+        "scripts/validate_package.py": "dd26c09107d3b596b95e8ed05934bdebed7d48a79ddede1e22caaa3d984cf1e6"
+      }
+    },
+    "B": {
+      "source_commit": "f18135dcd637eed20bf0a879b1e1cd8de99db3ac",
+      "input_hashes": {
+        "state.json": "011a28f24aa1af896d1363db9838a434005e440f24a806a41f2366dd16d11fe7",
+        "results.csv": "8efb51e2b5ff1b578c96d175bdc0d3fda0f034e785af39dd2da91936d176c9e8",
+        "analysis.md": "efb1524ac22b43b0c8ced879b6fe6854c005f526b6806a08f1158aa0dc342bda"
+      },
+      "package_hashes": {
+        "skills/sa-code-audit/SKILL.md": "8895243b974c7f6fe2fb716ff0704e5aee4e7fbdf6737a032a74f9d6450244fa",
+        "skills/sa-experiment-analysis/SKILL.md": "8a16c2a40bf426200a9a8403fa191e2f199da8d7054a4e6a711ecf1827157c11",
+        "skills/sa-figure-production/SKILL.md": "4d5932c0347145800d4d62ef091aa54c077c63779a4d1a763d88f682aab112f6",
+        "skills/sa-paper-reading/SKILL.md": "abe4fa73c5389e78737cd755ca6908003afeb99a4562d860a12e9d9a0b7919f1",
+        "skills/sa-paper-writing/SKILL.md": "ad812e821a02d95a43def54348b3b11416de4a3a4437ba71d732e9aa473ea925",
+        "skills/sa-research-design/SKILL.md": "ce7e3cfc18bbe92a686881c1e5a534bfd40669ac4646e9e0d416fdf3242fc4cc",
+        "skills/sa-revision-check/SKILL.md": "b10a8101f49fb2812f5e4d27e38a348d50ebd8bfd766e11b5b8b522a79d175bd",
+        "skills/sa-scientific-review/SKILL.md": "1df5f1892b7c3c4d761d71d77c6d8267fd861ed51d3b8635f8547e3fb024ff47",
+        "skills/sa-submission-check/SKILL.md": "c99adfef0b99080b9e6d0f82442da728aa5f57699b59b586f4c6627b6f72b306",
+        "skills/sa-topic-selection/SKILL.md": "b3124c69f91856857dd30fc8b6867132ea7db72cae90f0ec5d0291dc44807228",
+        "skills/sa-workflow/SKILL.md": "501c96e1eac8fe257a014f64d4980e723d59383b5761f66ed1933a5d76cf6fef",
+        "skills/sa-workflow/agents/openai.yaml": "80bd50ef4ec30d0d6ddaeb104e65b61af8e49dd7b5bf9f5a7abfb1e25a62d43d",
+        "skills/sa-workflow/references/state.example.json": "a56ac7f4786fa752cc6e2c823e66cfff3cd366e3a62b3d5521f9fd4e6cfc9bce",
+        "skills/sa-workflow/references/state.md": "b9706ce7176de62a4017461f9b8d8177ff43088b6afb932a64f38b931286157a",
+        "skills/sa-topic-selection/agents/openai.yaml": "879552505ed92e0e8d802c91fd62667e4df7c34159d3ba3442ce5756b2bd5823",
+        "skills/sa-topic-selection/references/decision-table.md": "51abd0b3b98c50396727bbcf2f1f4dcf21992a06021a2a3890eddb446c6c53a0",
+        "skills/sa-submission-check/agents/openai.yaml": "b2eff9d8d0af8069f6020017db864ebf63644e7bd0e09d5390423b8e26710a25",
+        "skills/sa-submission-check/references/checklist.md": "ee8e0029c50b2b622919b49180998c3bf32acc2f6a5d93ac9a36405e75b2024f",
+        "skills/sa-submission-check/templates/report.md": "8bea50d4ec5e3e276fc16f680c7b84f16ebf848d684e97fb0d612ab7d1ce44e9",
+        "skills/sa-scientific-review/agents/openai.yaml": "fb08238af543968e5bb741f81b33fd91502617dd8c0f320f8cd32cb2f57e9555",
+        "skills/sa-scientific-review/references/panels.md": "368f4e113d710be9d7c6d52747016ddd0bc4ae8e3d7d6993eb8287467411a13e",
+        "skills/sa-scientific-review/references/scientific-criteria.md": "6a2f1486cab61622709779285a11925e2951fdc8ab40e52a4a28e01645a62ff5",
+        "skills/sa-scientific-review/templates/report.md": "58b31e24fe529d7339fdf80f14772ab9476624b059f1f91700428bd1994c8a42",
+        "skills/sa-revision-check/agents/openai.yaml": "d66c84962345028706bfea1572b8660f6b6a7dbc32291398489c731787ecbc5e",
+        "skills/sa-revision-check/references/verification.md": "4c4e692368acaf22c371f58b1152b1584b30650f4a0d0612be9b800c5e9981e5",
+        "skills/sa-revision-check/templates/report.md": "5dc577d3ccc882b3564610be5684dcaab32b3bad0a10680d01b788e627680738",
+        "skills/sa-research-design/agents/openai.yaml": "171b5f2090acc6d1063bd5b095e70808f20d41298005436523884fa24511ab52",
+        "skills/sa-research-design/references/study-modes.md": "acaf9a784d367c46092c33041ecbb3314a4d6753abba47a3882af4f1335fff41",
+        "skills/sa-paper-writing/agents/openai.yaml": "db0df88522cc950e66614ad3891b491a88de260ef72aefd96adf96f935105377",
+        "skills/sa-paper-writing/references/section-guidance.md": "e4a4381456880d08eb9eec4e43c5836609ac5c74ff0cb7d5726e66f30c22b6e4",
+        "skills/sa-paper-writing/templates/writing-handoff.md": "c64c55018b0a86572aa0c91c199e2543da12d908a447437eff47ca265cf4d40f",
+        "skills/sa-paper-reading/agents/openai.yaml": "f844fa82c8879fe59b62916c45954b3335584d893074c515659225a72300a8ad",
+        "skills/sa-paper-reading/references/literature-card.md": "42dd1c3e3eaabe30339632889cc972fbe3d5e72679f05cb431894e1af27da541",
+        "skills/sa-figure-production/agents/openai.yaml": "69a139ec47386bf8a9057a62b4555e84f9b3a84299816622fef6bf745bb0ec4b",
+        "skills/sa-figure-production/references/production-guide.md": "f4b5cbe8be182242218c9fb22e8819433847ee1c7ceb4be1a4c784218d5f11ed",
+        "skills/sa-figure-production/templates/figure-record.md": "841b2f5a4efc783ecf990d01d1a3fffd3276048f0ab78311ebf634b42784e914",
+        "skills/sa-experiment-analysis/agents/openai.yaml": "cbf7092a2e705d2b514761e7fdf6c5b0fbaf6a38ba2489809818a4d9e6497c8f",
+        "skills/sa-experiment-analysis/references/analysis-checks.md": "44ce424f1f0ef72fc3be1cf4b1530e229a94bd12d89725a6bae472d29c3e9db2",
+        "skills/sa-experiment-analysis/templates/claim-table.md": "454faf7f6dca918e000ef5198e0df78723eeec871950113f4d7298f8c4232ea9",
+        "skills/sa-code-audit/agents/openai.yaml": "ab1738924743e7e9eb32bcc1eb2b4b72f86c85ff75fc7ec5ef6c7a4204cad6c4",
+        "shared/CONTRACT.md": "6c5248f8a517f9bb3e783288c8d59a3b1deb282e80c3c99ac5422510bd5135d4",
+        "shared/EVIDENCE.md": "4429e518ea66cabb12f65755a6c50bcc8f6b65fcec74409e0d0cd641277865f4",
+        "shared/handoff.example.json": "b17fa9d03ed53289335e40456577ee80916f0593459cbccc568b42a9a230913e",
+        "shared/HANDOFF.md": "09bf8cd1711822c3067defd0c2cb3539ab7506823365698f291f5f8b9d241c9f",
+        "shared/ISSUES.md": "d6c05ef2ddcce059ee16ffc5d492f5095a3077fd27e8af3ddff0706f4297aed2",
+        "shared/LOCAL_OPERATIONS.md": "1e17ad8ff62cdb31351afc648f563cbaa861cff49fe7ebae0060eeb6d159b140",
+        "scripts/build_release.py": "4756932c2ad8b0839abcd8b25ac78e30418230eab8d138590bb87efebb3ec98b",
+        "scripts/project_state.py": "abe710c2bb4df66844b46d48d7cfd3b66786f77babb4dce07f34b4b8b327f94f",
+        "scripts/validate_artifacts.py": "49fc67d5b0562e4d457b44dbccab7d21a0977aada7fb0c10a9bb79f1a9fa1930",
+        "scripts/validate_package.py": "dd26c09107d3b596b95e8ed05934bdebed7d48a79ddede1e22caaa3d984cf1e6"
+      }
+    }
+  },
+  "limitations": [
+    "One sample per arm; tasks within an arm share context.",
+    "Explicit invocation does not test implicit routing or host discovery.",
+    "B predates the documentation-only changes in ec2f9fd.",
+    "files_read and commands are worker-recorded logs, not an independent filesystem audit.",
+    "Public record includes exact final responses and normalized command strings, not full shell read output or private absolute paths.",
+    "No latency, token-cost or universal quality claim."
+  ],
+  "cases": [
+    {
+      "id": "short_edit",
+      "acceptance": "Return one English revision retaining pilot uncertainty and lack of held-out evidence; no unrelated workflow.",
+      "grading": "Both outputs meet this bounded criterion; no comparative superiority inferred.",
+      "A": {
+        "response": "Our development pilot suggests that the method may reduce unnecessary revalidation, although this finding has not yet been confirmed on held-out repositories.",
+        "response_characters": 158,
+        "files_read": [
+          "cases.json",
+          "A/skills/sa-paper-writing/SKILL.md"
+        ],
+        "commands": [
+          {
+            "command": "Get-Content -Raw 'EVAL_ROOT/cases.json'",
+            "exit_code": 0
+          },
+          {
+            "command": "Get-ChildItem -Name 'EVAL_ROOT/A'",
+            "exit_code": 0
+          },
+          {
+            "command": "Get-Content -Raw 'EVAL_ROOT/A/skills/sa-paper-writing/SKILL.md'",
+            "exit_code": 0
+          }
+        ],
+        "limitations": [
+          "仅润色给定句子，未核验试点结果。"
+        ],
+        "recorded_package_files_read": 1
+      },
+      "B": {
+        "response": "Our development pilot suggests that the method may reduce unnecessary revalidation, although this finding has not been confirmed on held-out repositories.",
+        "response_characters": 154,
+        "files_read": [
+          "cases.json",
+          "B/skills/sa-paper-writing/SKILL.md"
+        ],
+        "commands": [
+          {
+            "command": "Get-Content -LiteralPath 'EVAL_ROOT/cases.json'",
+            "exit_code": 0
+          },
+          {
+            "command": "Get-Content -LiteralPath 'EVAL_ROOT/B/skills/sa-paper-writing/SKILL.md'",
+            "exit_code": 0
+          }
+        ],
+        "limitations": [],
+        "recorded_package_files_read": 1
+      }
+    },
+    {
+      "id": "function_explanation",
+      "acceptance": "Explain last row wins and first-key insertion order from the supplied function; no invented execution or repository scan.",
+      "grading": "Both outputs meet this bounded criterion; no comparative superiority inferred.",
+      "A": {
+        "response": "重复 id 会保留最后一次出现的那条 row：result[row[\"id\"]] = row 会覆盖同一键之前的值。返回值是这些 row 组成的列表，不会合并重复行的字段。Python 3.7+ 中，列表顺序按各 id 首次出现的顺序排列，覆盖值不会移动该键的位置。例如输入 [{\"id\": 1, \"v\": \"a\"}, {\"id\": 2, \"v\": \"b\"}, {\"id\": 1, \"v\": \"c\"}]，返回 [{\"id\": 1, \"v\": \"c\"}, {\"id\": 2, \"v\": \"b\"}]。这是对所给完整函数第 2–5 行的静态分析（code_observation，source），未执行函数，也未检查其他代码。",
+        "response_characters": 310,
+        "files_read": [
+          "cases.json",
+          "A/skills/sa-code-audit/SKILL.md"
+        ],
+        "commands": [
+          {
+            "command": "Get-Content -Raw 'EVAL_ROOT/cases.json'",
+            "exit_code": 0
+          },
+          {
+            "command": "Get-Content -Raw 'EVAL_ROOT/A/skills/sa-code-audit/SKILL.md'",
+            "exit_code": 0
+          }
+        ],
+        "limitations": [
+          "仅静态分析用户提供的函数；示例结果为源码推导，非执行记录。"
+        ],
+        "recorded_package_files_read": 1
+      },
+      "B": {
+        "response": "遇到重复 id 时，后出现的 row 会覆盖之前的 row，因此返回的列表中每个 id 只保留最后出现的那条记录。依据是循环中的 result[row[\"id\"]] = row。\n\n在 Python 3.7+ 中，字典保持插入顺序；覆盖已有键不会改变其位置，所以列表按各 id 首次出现的顺序排列，而不是按最后一次出现的顺序。以上结论来自对所给代码的静态阅读，未执行函数。",
+        "response_characters": 186,
+        "files_read": [
+          "cases.json",
+          "B/skills/sa-code-audit/SKILL.md"
+        ],
+        "commands": [
+          {
+            "command": "Get-Content -LiteralPath 'EVAL_ROOT/cases.json'",
+            "exit_code": 0
+          },
+          {
+            "command": "Get-Content -LiteralPath 'EVAL_ROOT/B/skills/sa-code-audit/SKILL.md'",
+            "exit_code": 0
+          }
+        ],
+        "limitations": [
+          "仅检查题目提供的完整函数；未运行代码。"
+        ],
+        "recorded_package_files_read": 1
+      }
+    },
+    {
+      "id": "metric_design",
+      "acceptance": "Metric measures correct reuse with no repeated execution among eligible requests; minimum validation; no added output-quality criterion.",
+      "grading": "Both outputs meet this bounded criterion; no comparative superiority inferred.",
+      "A": {
+        "response": "主指标：有效缓存重复请求免运行率 = 正确返回已有缓存结果且底层计算执行次数增量为 0 的请求数 / 输入完全相同且结果缓存有效的重复请求总数。越高越好；该限定目标的通过条件为 100%。错误、未返回缓存结果或触发重新运行的请求计为失败，不从分母剔除；不评价缓存结果本身的质量。\n\n最小验证：选一个固定输入，首次运行生成缓存并记录缓存内容及底层计算调用计数；确认缓存有效后，原样再次提交一次。检查返回的是对应缓存结果，且调用计数未增加。该重复请求满足两项条件即为 1/1，否则为 0/1。首次建缓存的请求不计入分母。计数应放在实际计算入口，不能只依据系统自报的 cache hit。一次检查只能验证这个用例；这是验证设计，尚未执行。",
+        "response_characters": 316,
+        "files_read": [
+          "cases.json",
+          "A/skills/sa-research-design/SKILL.md",
+          "A/shared/CONTRACT.md"
+        ],
+        "commands": [
+          {
+            "command": "Get-Content -Raw 'EVAL_ROOT/cases.json'",
+            "exit_code": 0
+          },
+          {
+            "command": "Get-Content -Raw 'EVAL_ROOT/A/skills/sa-research-design/SKILL.md'",
+            "exit_code": 0
+          },
+          {
+            "command": "Get-Content -Raw 'EVAL_ROOT/A/shared/CONTRACT.md'",
+            "exit_code": 0
+          }
+        ],
+        "limitations": [
+          "未运行系统；单用例验证不能证明所有输入上的行为。"
+        ],
+        "recorded_package_files_read": 2
+      },
+      "B": {
+        "response": "主指标：有效缓存重复请求的免重运行成功率（越高越好）。\n\n成功率 = 正确复用有效缓存且底层计算未被再次调用的请求数 / 输入完全相同且缓存有效的重复请求总数。\n\n只把符合条件的重复请求计入分母；首次填充缓存不计入。错误返回或仅跳过执行但没有复用缓存的请求计为失败，不评价缓存结果的输出质量。对受测请求，目标是 100%；分母为零时指标未定义。\n\n最小验证：选一个固定输入，首次执行并生成有效缓存，记录底层计算调用次数；在确认缓存仍有效且输入完全相同后重复请求一次。用缓存读取记录或缓存条目标识确认复用，并用底层调用计数确认没有新增执行。两项都满足则本次成功，否则失败。无需输出质量指标或额外泛化实验。\n\n这是验证设计，尚未执行；一次成功仅证明这一受测场景。",
+        "response_characters": 329,
+        "files_read": [
+          "cases.json",
+          "B/skills/sa-research-design/SKILL.md",
+          "B/shared/CONTRACT.md"
+        ],
+        "commands": [
+          {
+            "command": "Get-Content -LiteralPath 'EVAL_ROOT/cases.json'",
+            "exit_code": 0
+          },
+          {
+            "command": "Get-Content -LiteralPath 'EVAL_ROOT/B/skills/sa-research-design/SKILL.md'",
+            "exit_code": 0
+          },
+          {
+            "command": "Get-Content -LiteralPath 'EVAL_ROOT/B/shared/CONTRACT.md'",
+            "exit_code": 0
+          }
+        ],
+        "limitations": [
+          "未提供待测系统，未执行验证；单场景检查不估计跨场景成功率。"
+        ],
+        "recorded_package_files_read": 2
+      }
+    },
+    {
+      "id": "version_comparison",
+      "acceptance": "Compare claim strength under the same criteria; no invented historical review IDs, experimental proof or closure counts.",
+      "grading": "Both outputs meet this bounded criterion; no comparative superiority inferred.",
+      "A": {
+        "response": "v2 的主张明显收窄，依据相同的两个文字维度比较：\n\n| 维度 | v1 | v2 |\n|---|---|---|\n| 适用范围 | “generalizes to unseen repositories” 宣称可泛化到未见仓库 | “two development repositories” 将结果限定于两个开发仓库 |\n| 确定性 | 将泛化表述为已成立的结论 | “remains untested” 明确泛化尚未验证 |\n\n文字上的进步是区分开发集结果与尚未测试的泛化能力。v2 还新增了开发仓库结果改善的陈述，但仅凭这两句话无法核验其真实性。此次只比较文字主张强度，对差异判断置信度高；不判断科学结论是否成立或投稿是否就绪，也不涉及历史审稿问题的关闭。",
+        "response_characters": 332,
+        "files_read": [
+          "cases.json",
+          "A/skills/sa-revision-check/SKILL.md",
+          "A/shared/CONTRACT.md",
+          "A/skills/sa-revision-check/references/verification.md"
+        ],
+        "commands": [
+          {
+            "command": "Get-Content -Raw 'EVAL_ROOT/cases.json'",
+            "exit_code": 0
+          },
+          {
+            "command": "Get-Content -Raw 'EVAL_ROOT/A/skills/sa-revision-check/SKILL.md'",
+            "exit_code": 0
+          },
+          {
+            "command": "Get-Content -Raw 'EVAL_ROOT/A/shared/CONTRACT.md'",
+            "exit_code": 0
+          },
+          {
+            "command": "Get-Content -Raw 'EVAL_ROOT/A/skills/sa-revision-check/references/verification.md'",
+            "exit_code": 0
+          }
+        ],
+        "limitations": [
+          "仅比较提供的 v1/v2 文本；没有核验实验数据或历史评审。"
+        ],
+        "recorded_package_files_read": 3
+      },
+      "B": {
+        "response": "v2 的主张明显收窄，也更明确地区分了已报告结果与未验证范围。\n\n- v1 的 “generalizes to unseen repositories” 直接断言对未见仓库具有泛化能力，没有给出范围限定。\n- v2 的 “improved results on two development repositories” 将实证主张限定为两个开发仓库上的结果改善；“generalization to unseen repositories remains untested” 明确撤回对未见仓库泛化能力的肯定。\n\n这是从无条件泛化断言转为限定样本的结果陈述，并明确证据缺口。仅凭文字无法验证改善是否真实，也不能推断泛化失败；此处不涉及历史审稿问题或关闭数量。",
+        "response_characters": 330,
+        "files_read": [
+          "cases.json",
+          "B/skills/sa-revision-check/SKILL.md",
+          "B/shared/CONTRACT.md"
+        ],
+        "commands": [
+          {
+            "command": "Get-Content -LiteralPath 'EVAL_ROOT/cases.json'",
+            "exit_code": 0
+          },
+          {
+            "command": "Get-Content -LiteralPath 'EVAL_ROOT/B/skills/sa-revision-check/SKILL.md'",
+            "exit_code": 0
+          },
+          {
+            "command": "Get-Content -LiteralPath 'EVAL_ROOT/B/shared/CONTRACT.md'",
+            "exit_code": 0
+          }
+        ],
+        "limitations": [
+          "仅比较给定文本的主张强度，未验证实验事实。"
+        ],
+        "recorded_package_files_read": 2
+      }
+    },
+    {
+      "id": "review_and_edit",
+      "acceptance": "Explain unsupported significance/generalization and supply a bounded English rewrite without renewed confirmation.",
+      "grading": "Both outputs meet this bounded criterion; no comparative superiority inferred.",
+      "A": {
+        "response": "给定证据只支持两个开发仓库上的均值从 10 提高到 12。“significantly” 缺乏显著性检验支持；“across repositories” 未限定开发仓库范围，容易扩大结论。即便把 significantly 理解为幅度较大，目前也没有足够依据作这一判断；总体均值提高也不等于每个仓库都提高。以下改写依据用户提供的证据摘要，未独立复现实验：\n\nAcross two development repositories, our method achieved a mean score of 12 compared with 10 for the baseline, with higher scores indicating better performance; statistical significance was not tested, and generalization to held-out repositories remains untested.",
+        "response_characters": 442,
+        "files_read": [
+          "cases.json",
+          "A/skills/sa-paper-writing/SKILL.md",
+          "A/skills/sa-scientific-review/SKILL.md",
+          "A/shared/CONTRACT.md",
+          "A/shared/EVIDENCE.md",
+          "A/skills/sa-scientific-review/references/scientific-criteria.md"
+        ],
+        "commands": [
+          {
+            "command": "Get-Content -Raw 'EVAL_ROOT/cases.json'",
+            "exit_code": 0
+          },
+          {
+            "command": "Get-Content -Raw 'EVAL_ROOT/A/skills/sa-paper-writing/SKILL.md'",
+            "exit_code": 0
+          },
+          {
+            "command": "Get-Content -Raw 'EVAL_ROOT/A/skills/sa-scientific-review/SKILL.md'",
+            "exit_code": 0
+          },
+          {
+            "command": "Get-Content -Raw 'EVAL_ROOT/A/shared/CONTRACT.md'",
+            "exit_code": 0
+          },
+          {
+            "command": "Get-Content -Raw 'EVAL_ROOT/A/shared/EVIDENCE.md'",
+            "exit_code": 0
+          },
+          {
+            "command": "Get-Content -Raw 'EVAL_ROOT/A/skills/sa-scientific-review/references/scientific-criteria.md'",
+            "exit_code": 0
+          }
+        ],
+        "limitations": [
+          "证据仅为用户给定摘要，没有逐仓库结果、原始运行记录或显著性检验。"
+        ],
+        "recorded_package_files_read": 5
+      },
+      "B": {
+        "response": "原句的强主张不受给定证据支持：均值从 10 升至 12 支持数值上的改善，但未经显著性检验不能断言 “significantly”；两个开发仓库也不足以支持未加限定的跨仓库结论。均值提高不等于每个仓库都提高。这里依据的是用户提供的结果摘要，未核验原始运行记录。\n\nAcross two development repositories, our method increased the mean score from 10 to 12 relative to the baseline; statistical significance was not assessed, and generalization to held-out repositories remains untested.",
+        "response_characters": 349,
+        "files_read": [
+          "cases.json",
+          "B/skills/sa-scientific-review/SKILL.md",
+          "B/skills/sa-paper-writing/SKILL.md",
+          "B/shared/CONTRACT.md",
+          "B/shared/EVIDENCE.md",
+          "B/skills/sa-scientific-review/references/scientific-criteria.md"
+        ],
+        "commands": [
+          {
+            "command": "Get-Content -LiteralPath 'EVAL_ROOT/cases.json'",
+            "exit_code": 0
+          },
+          {
+            "command": "Get-Content -LiteralPath 'EVAL_ROOT/B/skills/sa-scientific-review/SKILL.md'",
+            "exit_code": 0
+          },
+          {
+            "command": "Get-Content -LiteralPath 'EVAL_ROOT/B/skills/sa-paper-writing/SKILL.md'",
+            "exit_code": 0
+          },
+          {
+            "command": "Get-Content -LiteralPath 'EVAL_ROOT/B/shared/CONTRACT.md'",
+            "exit_code": 0
+          },
+          {
+            "command": "Get-Content -LiteralPath 'EVAL_ROOT/B/shared/EVIDENCE.md'",
+            "exit_code": 0
+          },
+          {
+            "command": "Get-Content -LiteralPath 'EVAL_ROOT/B/skills/sa-scientific-review/references/scientific-criteria.md'",
+            "exit_code": 0
+          }
+        ],
+        "limitations": [
+          "仅评估给定句子与证据摘要，未读取原始实验记录或执行显著性检验。"
+        ],
+        "recorded_package_files_read": 5
+      }
+    },
+    {
+      "id": "resume_project",
+      "acceptance": "Run read-only status checks; propose stale analysis; preserve pending/not_applicable/needs_decision and reasons; no experiments or input mutation.",
+      "grading": "Both outputs meet this bounded criterion; no comparative superiority inferred.",
+      "A": {
+        "response": "已完成只读恢复检查，未修改 state.json 或其他输入，也未运行实验。\n\n结构检查通过（scope: structure_only），不代表科研结论有效。resume 的只读输出将 analysis 从 complete 标为 stale：当前 results.csv 和 analysis.md 的 SHA-256 均不匹配状态中记录的全零哈希。results.csv 当前含 baseline=10、proposal=12；analysis.md 仅写着“Old analysis requiring recheck.”，不能继续作为已完成分析使用。哈希不匹配说明当前文件无法对应记录版本，不能据此还原此前内容。\n\n保留既有状态和决定：writing 仍为 pending；experiment 仍为 not_applicable，保留“Theory-only extension; empirical expansion was not authorized”；topic 仍为 needs_decision，保留“User has not chosen the extension”。三者均有依赖 analysis 需要复核的提示，而非一律改成 stale。上述变化只在命令输出的恢复建议中，原状态文件未写回。\n\n下一步候选仅为 analysis：由分析阶段负责人复核当前结果来源、指标含义和分析内容，再记录核验后的输入、输出版本，才能恢复完成状态并推进 writing。扩展方向仍待原有决策解决；不启动已判定不适用且未授权的实验。本轮到状态检查与下一步说明为止，未执行该分析复核。",
+        "response_characters": 698,
+        "files_read": [
+          "cases.json",
+          "A/skills/sa-workflow/SKILL.md",
+          "A/shared/CONTRACT.md",
+          "A/skills/sa-workflow/references/state.md",
+          "A/shared/LOCAL_OPERATIONS.md",
+          "work-A/state.json",
+          "work-A/analysis.md",
+          "work-A/results.csv"
+        ],
+        "commands": [
+          {
+            "command": "Get-Content -Raw 'EVAL_ROOT/cases.json'",
+            "exit_code": 0
+          },
+          {
+            "command": "Get-Content -Raw 'EVAL_ROOT/A/skills/sa-workflow/SKILL.md'",
+            "exit_code": 0
+          },
+          {
+            "command": "Get-Content -Raw 'EVAL_ROOT/A/shared/CONTRACT.md'",
+            "exit_code": 0
+          },
+          {
+            "command": "Get-Content -Raw 'EVAL_ROOT/A/skills/sa-workflow/references/state.md'",
+            "exit_code": 0
+          },
+          {
+            "command": "Get-Content -Raw 'EVAL_ROOT/A/shared/LOCAL_OPERATIONS.md'",
+            "exit_code": 0
+          },
+          {
+            "command": "Get-Content -Raw 'EVAL_ROOT/work-A/state.json'",
+            "exit_code": 0
+          },
+          {
+            "command": "Get-Content -Raw 'EVAL_ROOT/work-A/analysis.md'; Get-Content -Raw 'EVAL_ROOT/work-A/results.csv'; Get-ChildItem -File 'EVAL_ROOT/work-A' | Get-FileHash -Algorithm SHA256 | ConvertTo-Json",
+            "exit_code": 0
+          },
+          {
+            "command": "python 'EVAL_ROOT/A/scripts/validate_artifacts.py' state state.json",
+            "exit_code": 0
+          },
+          {
+            "command": "python 'EVAL_ROOT/A/scripts/project_state.py' resume state.json --root .",
+            "exit_code": 0
+          },
+          {
+            "command": "Get-ChildItem -Recurse -File 'EVAL_ROOT/work-A' | Select-Object FullName,Length",
+            "exit_code": 0
+          },
+          {
+            "command": "Get-ChildItem -File 'EVAL_ROOT/work-A' | ForEach-Object { $_.FullName }",
+            "exit_code": 0
+          }
+        ],
+        "limitations": [
+          "结构校验和文件版本核对不证明科学正确性；原始记录版本不可从全零哈希恢复。未执行分析阶段、实验或状态写回。"
+        ],
+        "recorded_package_files_read": 4
+      },
+      "B": {
+        "response": "已完成只读状态检查，未运行实验，未修改原输入文件。\n\nstate.json 通过结构校验（scope: structure_only），但这不证明阶段成果有效。只读 resume 检查发现 results.csv 和 analysis.md 的当前 SHA-256 均与状态文件记录的全零哈希不符；这说明记录与当前文件不一致，不能据此认定文件曾发生过何种历史修改。analysis.md 也仅写着 “Old analysis requiring recheck.”，不能支撑已完成的分析。\n\n恢复建议中的阶段状态如下（未写回 state.json）：\n\n- analysis：由 complete 建议标为 stale，需要核查当前输入及分析产物。\n- writing：保留 pending，并记录依赖 analysis 待复核。\n- experiment：保留 not_applicable 和原理由 “Theory-only extension; empirical expansion was not authorized”。不扩展实验。\n- topic：保留 needs_decision 和原决定记录 “User has not chosen the extension”；不代替用户选择扩展方向。\n\n下一步候选仅为 analysis：由分析阶段负责人基于当前 results.csv（baseline=10、proposal=12）重新核查和补齐分析，确认来源、数值含义及证据范围后，再记录真实输入和产物版本、恢复完成状态。之后才推进依赖它的 writing。此轮只指出下一步，尚未执行分析或更新状态；现有扩展选择仍待决定。",
+        "response_characters": 718,
+        "files_read": [
+          "cases.json",
+          "B/skills/sa-workflow/SKILL.md",
+          "B/shared/CONTRACT.md",
+          "B/skills/sa-workflow/references/state.md",
+          "B/shared/LOCAL_OPERATIONS.md",
+          "work-B/state.json",
+          "work-B/results.csv",
+          "work-B/analysis.md"
+        ],
+        "commands": [
+          {
+            "command": "Get-Content -LiteralPath 'EVAL_ROOT/cases.json'",
+            "exit_code": 0
+          },
+          {
+            "command": "Get-Content -LiteralPath 'EVAL_ROOT/B/skills/sa-workflow/SKILL.md'",
+            "exit_code": 0
+          },
+          {
+            "command": "Get-Content -LiteralPath 'EVAL_ROOT/B/shared/CONTRACT.md'",
+            "exit_code": 0
+          },
+          {
+            "command": "Get-Content -LiteralPath 'EVAL_ROOT/B/skills/sa-workflow/references/state.md'",
+            "exit_code": 0
+          },
+          {
+            "command": "Get-Content -LiteralPath 'EVAL_ROOT/B/shared/LOCAL_OPERATIONS.md'",
+            "exit_code": 0
+          },
+          {
+            "command": "Get-ChildItem -LiteralPath 'EVAL_ROOT/work-B' -Recurse -File | Select-Object FullName,Length | ConvertTo-Json",
+            "exit_code": 0
+          },
+          {
+            "command": "Get-Content -LiteralPath 'EVAL_ROOT/work-B/state.json'",
+            "exit_code": 0
+          },
+          {
+            "command": "Get-Content -LiteralPath 'EVAL_ROOT/work-B/results.csv'",
+            "exit_code": 0
+          },
+          {
+            "command": "Get-Content -LiteralPath 'EVAL_ROOT/work-B/analysis.md'",
+            "exit_code": 0
+          },
+          {
+            "command": "python 'EVAL_ROOT/B/scripts/validate_artifacts.py' state state.json",
+            "exit_code": 0
+          },
+          {
+            "command": "python 'EVAL_ROOT/B/scripts/project_state.py' resume state.json --root .",
+            "exit_code": 0
+          },
+          {
+            "command": "Get-ChildItem -LiteralPath . -File | Get-FileHash -Algorithm SHA256 | Select-Object Path,Hash | ConvertTo-Json",
+            "exit_code": 0
+          }
+        ],
+        "limitations": [
+          "结构校验不验证科学正确性；未执行实验或重新分析。",
+          "resume 仅向标准输出打印建议，原状态文件仍记录 analysis=complete。",
+          "调用了 B/scripts/validate_artifacts.py 和 B/scripts/project_state.py；未额外阅读其实现或追踪解释器导入。"
+        ],
+        "recorded_package_files_read": 4
+      }
+    }
+  ]
+}
