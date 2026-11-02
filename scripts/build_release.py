@@ -20,7 +20,7 @@ FILES = (
     ".agents/plugins/marketplace.json", ".gitignore",
     "scripts/validate_artifacts.py", "scripts/project_state.py",
     "scripts/validate_package.py", "scripts/build_release.py",
-    "provenance/MIGRATION.md", "provenance/sources.json",
+    "provenance/sources.json",
     "provenance/reading-design.md", "provenance/analysis-writing-figures.md",
     "provenance/review-revision-quality.md", "provenance/workflow-audit.md",
 )

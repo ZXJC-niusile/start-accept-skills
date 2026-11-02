@@ -11,7 +11,7 @@ any applicable attribution requirements remain. The source audits below predate
 the MIT decision; statements that they do not grant a package-wide license
 describe those historical audits, not the current license of our new work.
 
-See provenance/MIGRATION.md and the group provenance records for source names,
+See provenance/sources.json and the group provenance records for source names,
 paths, hashes, declared licenses and retained/reworked/excluded capabilities.
 These records describe provenance, not a legal determination of license scope.
 
