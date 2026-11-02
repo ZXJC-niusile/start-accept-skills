@@ -26,6 +26,8 @@ codex plugin list --marketplace start-accept-research --json
 
 Run from the repository root. Source edits do not automatically refresh the installed cache; verify the installed version and files.
 
+If the same marketplace name is registered from an old checkout or archive directory, remove that registration with `codex plugin marketplace remove start-accept-research`, then rerun the install commands from this repository. This source-change procedure was exercised with CLI 0.166.0; see the candidate host record.
+
 ## Remove
 
 ```sh

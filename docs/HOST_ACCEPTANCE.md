@@ -1,5 +1,7 @@
 # 宿主验收 / Host acceptance
 
+最新候选版检查见 [0.1.4 CLI 验收](validation/2026-11-02-host.md)。下文保留 0.1.3 的历史记录。
+
 Date: 2026-10-17. Package: 0.1.3. Host: Windows, Codex CLI 0.162.1.
 
 | 检查 / Check | 结果 / Result |
