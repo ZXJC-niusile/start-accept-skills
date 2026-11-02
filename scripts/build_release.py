@@ -20,11 +20,12 @@ FILES = (
     ".agents/plugins/marketplace.json", ".gitignore",
     "scripts/validate_artifacts.py", "scripts/project_state.py",
     "scripts/validate_package.py", "scripts/build_release.py",
+    "tests/test_regressions.py", "tests/test_package_links.py",
     "provenance/sources.json",
     "provenance/reading-design.md", "provenance/analysis-writing-figures.md",
     "provenance/review-revision-quality.md", "provenance/workflow-audit.md",
 )
-DIRECTORIES = ("skills", "shared", "docs")
+DIRECTORIES = ("skills", "shared", "docs", "tests/behavior")
 
 
 def digest(data):
@@ -102,7 +103,7 @@ def main():
         file_manifest = {name: digest(data) for name, data in sorted(payload.items())}
         payload["RELEASE-MANIFEST.json"] = json.dumps({
             "version": version, "status": "preview_not_published", "files": file_manifest,
-            "excluded": ["evals", "tests", "cache", "personal configuration"],
+            "excluded": ["evals", "cache", "personal configuration"],
             "license": manifest.get("license"),
             "open_release_items": ["third-party attribution review", "desktop UI refresh (CLI smoke check documented)"]
         }, ensure_ascii=False, indent=2).encode("utf-8")
