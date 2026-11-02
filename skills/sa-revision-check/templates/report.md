@@ -9,7 +9,7 @@ Use the issue table and closure counts only when verifying prior issues. For ver
 | Issue ID | Previous criterion / anchor | Current evidence | Author assertion versus observation | Proposed status / history event | Remaining requirement |
 |---|---|---|---|---|---|
 
-New observations with origin (regression, pre-existing, newly revealed, or changed standard):
+New observations with origin (`revision_regression`, `previously_undetected`, `newly_revealed_by_evidence`, or `external_standard_change`):
 
 Relative progress:
 

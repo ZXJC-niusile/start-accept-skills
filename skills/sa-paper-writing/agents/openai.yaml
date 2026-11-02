@@ -1,5 +1,5 @@
 interface:
-  display_name: "SA Paper Writing"
+  display_name: "Paper Writing"
   short_description: "Draft and revise evidence-grounded CS manuscripts"
   default_prompt: "Use $sa-paper-writing to draft or revise this manuscript within the supplied evidence."
 policy:

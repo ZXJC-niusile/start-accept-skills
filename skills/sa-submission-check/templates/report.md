@@ -13,6 +13,6 @@ Checks performed (source, compile, rendered pages, citations, current venue rule
 
 Requested or readiness-relevant checks left unknown / skipped / not applicable, with reasons (group shared causes):
 
-Readiness for checked requirements:
+Readiness for checked requirements (`ready_for_checked_requirements`, `issues_found`, or `incomplete_checks`):
 
 Next-step handoff:

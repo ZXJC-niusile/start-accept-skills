@@ -32,7 +32,7 @@ Each stage has one primary owner, explicit inputs, output and completion conditi
 
 Continue routine authorized work inside a stage. Stop for an unresolved topic commitment, central-claim change, or work outside the agreed budget/authorization, presenting a concrete decision and supporting evidence. Do not ask again for decisions already made. A writing edit requested by the user is already authorized; a review finding alone does not authorize that edit.
 
-For multi-stage projects, use the user's artifact location or `.start-accept/<run-id>/` and maintain a state JSON plus immutable stage artifacts. Read [state contract](references/state.md) only when persisting/resuming. Update stage outputs and inputs with versions, not just a status flag. If upstream inputs changed, mark affected downstream stages stale before relying on their results.
+For multi-stage projects, use the user's artifact location or `.start-accept/`: keep the state JSON there and immutable stage artifacts under `.start-accept/<run-id>/`. Read [state contract](references/state.md) only when persisting/resuming. Update stage outputs and inputs with versions, not just a status flag. If upstream inputs changed, mark affected downstream stages stale before relying on their results.
 
 ## Complete
 

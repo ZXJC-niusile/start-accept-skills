@@ -1,4 +1,4 @@
 interface:
-  display_name: "科研流程协调"
-  short_description: "Coordinate research stages, evidence, and handoffs."
+  display_name: "Research Workflow"
+  short_description: "Coordinate research stages, evidence, and handoffs"
   default_prompt: "Use $sa-workflow to identify my current research stage and complete the next authorized deliverables."

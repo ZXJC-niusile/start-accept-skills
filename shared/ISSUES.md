@@ -4,7 +4,7 @@ Load when producing a structured issue ledger or verifying previous issues. A on
 
 Each issue has a stable `id`, `summary`, `severity` (critical/major/minor), `status`, `anchor`, `close_criterion`, and chronological `history`. Keep confidence separate from severity. Critical/major findings without sufficient anchors remain questions or unverified findings, not established defects.
 
-For a structured revision update, `python scripts/validate_artifacts.py ledger NEW.json --previous OLD.json` checks preservation of IDs, earlier history and close criteria. If the user changes a criterion, withdraw the old issue with that decision recorded and create a linked replacement rather than silently weaken the old criterion.
+For a structured revision update, run `python SA/scripts/validate_artifacts.py ledger NEW.json --previous OLD.json` from the project directory (`SA` is the package path; see [local operations](LOCAL_OPERATIONS.md)). It checks preservation of IDs, earlier history and close criteria. If the user changes a criterion, withdraw the old issue with that decision recorded and create a linked replacement rather than silently weaken the old criterion: set optional `replaced_by` on the withdrawn issue and `replaces` on the new one. Both must name another issue in the same ledger, and an issue with `replaced_by` must be withdrawn.
 
 Before replacing/removing `resolution_evidence`, archive it in append-only `resolution_history` entries with `at`, `reason`, and `evidence`. For real closure, add `--verify-files --root PROJECT` and a source registry when needed; structural validity alone is insufficient. The [local operations](LOCAL_OPERATIONS.md) helper handles transitions and archival without rewriting previous events.
 

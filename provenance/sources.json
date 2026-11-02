@@ -5,107 +5,342 @@
     {
       "path": "academic-paper-reviewer/SKILL.md",
       "sha256": "f006520307ce207c656d75fb7cadc37c6344d4bbee8e9af48d3115554010f4da",
-      "read_by": "integrator or assigned implementation agent"
+      "read_by": "integrator or assigned implementation agent",
+      "recorded_in": [
+        "provenance/review-revision-quality.md"
+      ]
     },
     {
       "path": "benchmark-paper-template/SKILL.md",
       "sha256": "ab40a1dfcbce2e7859df76795118d264afa5acbe788627a47f064736a777caf6",
-      "read_by": "integrator or assigned implementation agent"
+      "read_by": "integrator or assigned implementation agent",
+      "recorded_in": [
+        "provenance/analysis-writing-figures.md",
+        "provenance/reading-design.md"
+      ]
     },
     {
       "path": "ccf-paper-reviewer/SKILL.md",
       "sha256": "ba9e673a90ae2111a9441910cea8582859db624a218cb84a1d1853d3405a1c3b",
-      "read_by": "integrator or assigned implementation agent"
+      "read_by": "integrator or assigned implementation agent",
+      "recorded_in": [
+        "provenance/review-revision-quality.md"
+      ]
     },
     {
       "path": "deerflow-paper-review/SKILL.md",
       "sha256": "a0285baaeacc916bf45751c06db37745b195ddd4ec30e271ec1472f6cd48e8aa",
-      "read_by": "integrator or assigned implementation agent"
+      "read_by": "integrator or assigned implementation agent",
+      "recorded_in": [
+        "provenance/reading-design.md"
+      ]
     },
     {
       "path": "experiment-data-analysis/SKILL.md",
       "sha256": "60cfc91388add0a204781e4b2d386bff7500b8beb0f6df55b0d16a98be5ef5ad",
-      "read_by": "integrator or assigned implementation agent"
+      "read_by": "integrator or assigned implementation agent",
+      "recorded_in": [
+        "provenance/analysis-writing-figures.md"
+      ]
     },
     {
       "path": "figure-designer/SKILL.md",
       "sha256": "bb43872f2e77d570cbd160616066fab8fbc571205b5328c9c2967f93f920b38c",
-      "read_by": "integrator or assigned implementation agent"
+      "read_by": "integrator or assigned implementation agent",
+      "recorded_in": [
+        "provenance/analysis-writing-figures.md"
+      ]
     },
     {
       "path": "humanizer/SKILL.md",
       "sha256": "77071445054a3d8a26c3b665b5784204d34af1cadff9a00daa854b0623410042",
-      "read_by": "integrator or assigned implementation agent"
+      "read_by": "integrator or assigned implementation agent",
+      "recorded_in": [
+        "provenance/analysis-writing-figures.md"
+      ]
     },
     {
       "path": "idea-evaluator/SKILL.md",
       "sha256": "9380170484f657f9177c2e3a1a2cb5950005338eb93b839c6eb08e5559c9cf3d",
-      "read_by": "integrator or assigned implementation agent"
+      "read_by": "integrator or assigned implementation agent",
+      "recorded_in": [
+        "provenance/reading-design.md"
+      ]
     },
     {
       "path": "intro-drafter/SKILL.md",
       "sha256": "635c5254127dcc844c8c61b487ee2d7048dda05737def291a8ddd261ac699499",
-      "read_by": "integrator or assigned implementation agent"
+      "read_by": "integrator or assigned implementation agent",
+      "recorded_in": [
+        "provenance/analysis-writing-figures.md"
+      ]
     },
     {
       "path": "investigate-codebase/SKILL.md",
       "sha256": "6903ec4a09c819076dad388f3df5724e11299cb5f0510a6f94059252ebebc8d6",
-      "read_by": "integrator or assigned implementation agent"
+      "read_by": "integrator or assigned implementation agent",
+      "recorded_in": [
+        "provenance/workflow-audit.md"
+      ]
     },
     {
       "path": "let-accept-review/SKILL.md",
       "sha256": "9b5759178d755e0f7eba6fc1272ada4482782e8c3368d909b45b2573eb8ce957",
-      "read_by": "integrator or assigned implementation agent"
+      "read_by": "integrator or assigned implementation agent",
+      "recorded_in": [
+        "provenance/review-revision-quality.md"
+      ]
     },
     {
       "path": "paperjury/SKILL.md",
       "sha256": "3b05ddbb4448850ac8eeff66351c8794deea8034bdfeb78fcc215b73076707e6",
-      "read_by": "integrator or assigned implementation agent"
+      "read_by": "integrator or assigned implementation agent",
+      "recorded_in": [
+        "provenance/analysis-writing-figures.md",
+        "provenance/review-revision-quality.md"
+      ]
     },
     {
       "path": "peer-review/SKILL.md",
       "sha256": "4591645c59b057d0d12875134ab02560ca15fc073c9a47a6d21ff74ab0fb2c73",
-      "read_by": "integrator or assigned implementation agent"
+      "read_by": "integrator or assigned implementation agent",
+      "recorded_in": [
+        "provenance/review-revision-quality.md"
+      ]
     },
     {
       "path": "pre-submission-reviewer/SKILL.md",
       "sha256": "c4ee9268905dbc6b1200606c459bb262fec10a5991eaa8115c14cd86da142fcb",
-      "read_by": "integrator or assigned implementation agent"
+      "read_by": "integrator or assigned implementation agent",
+      "recorded_in": [
+        "provenance/review-revision-quality.md"
+      ]
     },
     {
       "path": "scientific-figure-making/SKILL.md",
       "sha256": "121cdc63bc6828e45f11332cb421641c81ab42bfdb149a3c2d0829daaa411b19",
-      "read_by": "integrator or assigned implementation agent"
+      "read_by": "integrator or assigned implementation agent",
+      "recorded_in": [
+        "provenance/analysis-writing-figures.md"
+      ]
     },
     {
       "path": "tech-paper-template/SKILL.md",
       "sha256": "7e0746fc51a42b19e4934ec9d53ea7570c2f85d14e874bfa1497822e5da1a9c0",
-      "read_by": "integrator or assigned implementation agent"
+      "read_by": "integrator or assigned implementation agent",
+      "recorded_in": [
+        "provenance/analysis-writing-figures.md",
+        "provenance/reading-design.md"
+      ]
     },
     {
       "path": "vibe-research-workflow/SKILL.md",
       "sha256": "04b3e7bbcb290553154bbdac72713ab522f3267e47b929cbe68598949098e59d",
-      "read_by": "integrator or assigned implementation agent"
+      "read_by": "integrator or assigned implementation agent",
+      "recorded_in": [
+        "provenance/workflow-audit.md"
+      ]
     },
     {
       "path": "investigate-codebase/references/analyze-pr-impact.md",
       "sha256": "4a86ed699ee80b3faea85818d8ad4903e4add27d85e0a3e68aab8bedb5cb826f",
-      "read_by": "integrator"
+      "read_by": "integrator",
+      "recorded_in": [
+        "provenance/workflow-audit.md"
+      ]
     },
     {
       "path": "investigate-codebase/references/orient-large-codebase.md",
       "sha256": "7750fe2882d450e14a54e2b1ae525f6dff3ae4c00fa5fd50df2ee91d09ef1c89",
-      "read_by": "integrator"
+      "read_by": "integrator",
+      "recorded_in": [
+        "provenance/workflow-audit.md"
+      ]
     },
     {
       "path": "investigate-codebase/references/trace-runtime-flow.md",
       "sha256": "4315234b506194253cf1f377c5107781f599a8388616d6e973438cdbbb4cafd6",
-      "read_by": "integrator"
+      "read_by": "integrator",
+      "recorded_in": [
+        "provenance/workflow-audit.md"
+      ]
     },
     {
       "path": "investigate-codebase/references/verify-generated-code.md",
       "sha256": "5416e97b0a82d02c3f8d4c16cc1e011782ebb46af1c937692dedf5cf5a007322",
-      "read_by": "integrator"
+      "read_by": "integrator",
+      "recorded_in": [
+        "provenance/workflow-audit.md"
+      ]
+    },
+    {
+      "path": "benchmark-paper-template/references/benchmark-design.md",
+      "sha256": "2e34ef26f7f3b07d151b41914252baf9639845c021aa482a7d5181ae9662abc4",
+      "read_by": "see recorded_in",
+      "recorded_in": [
+        "provenance/reading-design.md"
+      ]
+    },
+    {
+      "path": "benchmark-paper-template/references/construction-pipeline.md",
+      "sha256": "ffe08823cf17c0ee59ad648af4b5226dabbcf5e38929f9c88845b15f32997bec",
+      "read_by": "see recorded_in",
+      "recorded_in": [
+        "provenance/reading-design.md"
+      ]
+    },
+    {
+      "path": "benchmark-paper-template/references/experiments.md",
+      "sha256": "e3384e6faf1d8a69850ca97b158b35a73d8cfb4d396a9afa615721ecb3c658e9",
+      "read_by": "see recorded_in",
+      "recorded_in": [
+        "provenance/reading-design.md"
+      ]
+    },
+    {
+      "path": "benchmark-paper-template/references/paper-structure.md",
+      "sha256": "aba22cc31960292f5f2f8f93e5c15d190ce7ec1722e3765adf457ebca64eb61c",
+      "read_by": "see recorded_in",
+      "recorded_in": [
+        "provenance/analysis-writing-figures.md"
+      ]
+    },
+    {
+      "path": "ccf-paper-reviewer/references/universal-review-rubric.md",
+      "sha256": "b0aa8358093c4c0913e08ef069670d5d06a272b2e5fe4ad842e427088e6e55a1",
+      "read_by": "see recorded_in",
+      "recorded_in": [
+        "provenance/review-revision-quality.md"
+      ]
+    },
+    {
+      "path": "ccf-paper-reviewer/references/version-comparison.md",
+      "sha256": "f0381f9f10e7f29bc58bf4835b256029978d567382d7698641fce2912ce0e3a3",
+      "read_by": "see recorded_in",
+      "recorded_in": [
+        "provenance/review-revision-quality.md"
+      ]
+    },
+    {
+      "path": "humanizer/LICENSE.blader-humanizer",
+      "sha256": "caa1be9cba41c1afb88fe730ab1a4e04728295ea5b29ac2ee9f003a4ffbe3a77",
+      "read_by": "see recorded_in",
+      "recorded_in": [
+        "provenance/analysis-writing-figures.md"
+      ]
+    },
+    {
+      "path": "idea-evaluator/references/fatal-flaws.md",
+      "sha256": "74e13022ff7d7b6c1b4a424aefd0acafe78448124a00c0000ce44c41a6a05801",
+      "read_by": "see recorded_in",
+      "recorded_in": [
+        "provenance/reading-design.md"
+      ]
+    },
+    {
+      "path": "let-accept-review/references/evidence-contract.md",
+      "sha256": "ea6da018fc204a8719fdbfc66aa25bb8631d3435fe0b671b0dc87ea3dff50f53",
+      "read_by": "see recorded_in",
+      "recorded_in": [
+        "provenance/review-revision-quality.md"
+      ]
+    },
+    {
+      "path": "let-accept-review/references/issue-ledger.md",
+      "sha256": "da230f4cc2d01d1ae45f30360bbf11d8825b02fe3e49beab17fc1949aab5ac38",
+      "read_by": "see recorded_in",
+      "recorded_in": [
+        "provenance/review-revision-quality.md"
+      ]
+    },
+    {
+      "path": "let-accept-review/references/rubrics/core-scientific-review.md",
+      "sha256": "411929a9aacaed1fcde555315d53a1298fdf1cdc8e62abd22a7292a3c503dba8",
+      "read_by": "see recorded_in",
+      "recorded_in": [
+        "provenance/review-revision-quality.md"
+      ]
+    },
+    {
+      "path": "paperjury/LICENSE",
+      "sha256": "ed49ce3abb5312534a3f24ce7ccab211856332685862c73b1712e69db1c6bae9",
+      "read_by": "see recorded_in",
+      "recorded_in": [
+        "provenance/analysis-writing-figures.md",
+        "provenance/review-revision-quality.md"
+      ]
+    },
+    {
+      "path": "paperjury/references/ledger-schema.md",
+      "sha256": "c0fcf0e432d7f1d90edf866439789272374794bc48cf2bbfc3f6e75edb330a51",
+      "read_by": "see recorded_in",
+      "recorded_in": [
+        "provenance/review-revision-quality.md"
+      ]
+    },
+    {
+      "path": "paperjury/references/review-engine-v3.md",
+      "sha256": "18e2e93712534466734e9e71360b8eae53acbd2ff6201eb96748578bd6fbdb6b",
+      "read_by": "see recorded_in",
+      "recorded_in": [
+        "provenance/review-revision-quality.md"
+      ]
+    },
+    {
+      "path": "paperjury/references/writing-toolkit.md",
+      "sha256": "755258fd7b925b9ecce0a65f931a96d2e0c143cfe96fc4c68743bb1aee94a951",
+      "read_by": "see recorded_in",
+      "recorded_in": [
+        "provenance/analysis-writing-figures.md"
+      ]
+    },
+    {
+      "path": "peer-review/references/statistical_reproducibility.md",
+      "sha256": "c0ae6ad51095e8271c6abd0dff54926f04514139f6d82bd4b725ce6f5efe51d3",
+      "read_by": "see recorded_in",
+      "recorded_in": [
+        "provenance/review-revision-quality.md"
+      ]
+    },
+    {
+      "path": "pre-submission-reviewer/references/latex-rules.md",
+      "sha256": "a9aff5c2fc256eb0b7a3294cb4d97616684c91b778ea8f9652944fd2db2ecc16",
+      "read_by": "see recorded_in",
+      "recorded_in": [
+        "provenance/review-revision-quality.md"
+      ]
+    },
+    {
+      "path": "scientific-figure-making/LICENSE",
+      "sha256": "3003c8ec6028420f2e4029adfa5b90f120921dcdc9f3f4741897ad8296288a47",
+      "read_by": "see recorded_in",
+      "recorded_in": [
+        "provenance/analysis-writing-figures.md"
+      ]
+    },
+    {
+      "path": "scientific-figure-making/references/design-theory.md",
+      "sha256": "d5f6bfd03cdd34d8b4c2f345b4d630985a0a1e17dcd4dd6631d60b896386fcf8",
+      "read_by": "see recorded_in",
+      "recorded_in": [
+        "provenance/analysis-writing-figures.md"
+      ]
+    },
+    {
+      "path": "tech-paper-template/references/consistency-checks.md",
+      "sha256": "3473e9784dda0a47434428846db5bef03dced311164231d0c55a347a4688031b",
+      "read_by": "see recorded_in",
+      "recorded_in": [
+        "provenance/reading-design.md"
+      ]
+    },
+    {
+      "path": "tech-paper-template/references/thinking-template.md",
+      "sha256": "3b7728a17d548558cb9c8cca2edf6c4a4d312ba688b0e24ca2be5ff8f77cff5e",
+      "read_by": "see recorded_in",
+      "recorded_in": [
+        "provenance/analysis-writing-figures.md"
+      ]
     }
   ]
 }

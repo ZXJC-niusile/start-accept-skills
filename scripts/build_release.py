@@ -12,6 +12,8 @@ import stat
 from urllib.parse import unquote
 import zipfile
 
+import validate_package
+
 ROOT = Path(__file__).resolve().parents[1]
 FILES = (
     "README.md", "README.en.md", "NOTICE.md", "plugin.json", "requirements-dev.txt",
@@ -62,8 +64,7 @@ def inspect(payload):
     entries = [name for name in payload if re.fullmatch(r"skills/[^/]+/SKILL\.md", name)]
     if len(entries) != 11:
         raise ValueError("expected 11 skill entrypoints")
-    directories = {str(Path(name).parent).replace("\\", "/") for name in payload}
-    directories |= {p.as_posix() for name in payload for p in Path(name).parents if p.as_posix() != "."}
+    directories = {p.as_posix() for name in payload for p in Path(name).parents if p.as_posix() != "."}
     for name, data in payload.items():
         if name.endswith((".md", ".py", ".json", ".yaml", ".txt")):
             text = data.decode("utf-8-sig")
@@ -89,6 +90,9 @@ def main():
     parser.add_argument("--output", type=Path, help="New build directory; existing directories are never overwritten")
     args = parser.parse_args()
     try:
+        structure = validate_package.check(ROOT, runtime_only=True)
+        if not structure["valid"]:
+            raise ValueError("package structure check failed: " + "; ".join(structure["errors"]))
         payload = collect()
         manifest = inspect(payload)
         prefix = manifest["name"]
@@ -100,7 +104,7 @@ def main():
             "version": version, "status": "preview_not_published", "files": file_manifest,
             "excluded": ["evals", "tests", "cache", "personal configuration"],
             "license": manifest.get("license"),
-            "open_release_items": ["third-party attribution review", "desktop UI refresh (CLI smoke check documented)", "publication destination"]
+            "open_release_items": ["third-party attribution review", "desktop UI refresh (CLI smoke check documented)"]
         }, ensure_ascii=False, indent=2).encode("utf-8")
         archive = output / f"{prefix}-{version}-preview.zip"
         with zipfile.ZipFile(archive, "x", compression=zipfile.ZIP_DEFLATED) as bundle:
@@ -120,12 +124,12 @@ def main():
         report = {"version": version, "license": manifest.get("license"), "status": "preview_prepared_not_published", "archive": archive.name,
                   "sha256": archive_sha, "file_count": len(payload), "skill_count": 11,
                   "archive_bytes": archive.stat().st_size, "included_file_hashes": file_manifest,
-                  "checks": ["allowlist", "local markdown links", "known local paths", "11 skill entries", "archive round-trip"],
+                  "checks": ["runtime package structure (frontmatter, UI metadata, links)", "allowlist", "local markdown links", "known local paths", "11 skill entries", "archive round-trip"],
                   "not_checked": ["host activation", "scientific behavior", "third-party rights clearance", "general secret detection"]}
         (output / "build-report.json").write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
         print(json.dumps({k: v for k, v in report.items() if k != "included_file_hashes"}, ensure_ascii=False, indent=2))
         return 0
-    except (OSError, ValueError, UnicodeError, zipfile.BadZipFile) as exc:
+    except (OSError, ValueError, UnicodeError, zipfile.BadZipFile, validate_package.yaml.YAMLError) as exc:
         print(json.dumps({"valid": False, "error": str(exc)}, ensure_ascii=False))
         return 1
 

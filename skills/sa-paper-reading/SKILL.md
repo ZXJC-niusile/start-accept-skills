@@ -5,7 +5,7 @@ description: Find, explain, and compare computer-science literature with traceab
 
 # Read computer-science literature
 
-Produce an accurate account of what the sources establish and what remains unclear. Follow the [evidence and handoff contract](../../shared/CONTRACT.md).
+Produce an accurate account of what the sources establish and what remains unclear. Follow the [shared contract](../../shared/CONTRACT.md), which links the evidence and handoff details.
 
 ## Work
 

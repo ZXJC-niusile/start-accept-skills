@@ -17,7 +17,15 @@ from pathlib import Path
 
 KINDS = {"paper_report", "code_observation", "experiment_measurement", "inference"}
 STATUSES = {"pending", "active", "needs_decision", "complete", "stale", "not_applicable"}
+# Only started or finished work can become stale. Pending work, open decisions
+# and justified non-applicability keep their status semantics when upstream changes.
+STALEABLE = {"active", "complete", "stale"}
 ISSUE_STATUSES = {"open", "verified", "contested", "deferred", "resolved", "withdrawn"}
+
+
+def read_json(path):
+    """Read JSON, tolerating a UTF-8 BOM such as Windows PowerShell 5 writes."""
+    return json.loads(Path(path).read_text(encoding="utf-8-sig"))
 
 
 def anchor_valid(anchor):
@@ -190,7 +198,7 @@ def validate_ledger(data):
         if "anchor" not in issue:
             errors.append(f"{loc}.anchor: missing (null permitted for an open question)")
         if status in {"verified", "resolved"} and not anchor_valid(issue.get("anchor")):
-            errors.append(f"{loc}.anchor: verified finding needs versioned source")
+            errors.append(f"{loc}.anchor: {status} status needs a versioned source anchor; add it before this transition")
         if status == "resolved":
             resolution = issue.get("resolution_evidence")
             if not isinstance(resolution, list) or not resolution or not all(known_version(a) for a in resolution):
@@ -212,8 +220,8 @@ def validate_ledger(data):
         else:
             previous_time = None
             for j, event in enumerate(history):
-                if not isinstance(event, dict) or event.get("status") not in ISSUE_STATUSES or not event.get("reason") or not event.get("at"):
-                    errors.append(f"{loc}.history[{j}]: at, valid status and reason required")
+                if not isinstance(event, dict) or event.get("status") not in ISSUE_STATUSES or not event.get("reason"):
+                    errors.append(f"{loc}.history[{j}]: valid status and reason required")
                 timestamp = event_time(event.get("at")) if isinstance(event, dict) else None
                 if timestamp is None:
                     errors.append(f"{loc}.history[{j}].at: ISO date or timestamp required")
@@ -223,6 +231,19 @@ def validate_ledger(data):
                     previous_time = timestamp
             if not isinstance(history[-1], dict) or history[-1].get("status") != status:
                 errors.append(f"{loc}.history: last status must match issue")
+    for i, issue in enumerate(data["issues"]):
+        if not isinstance(issue, dict):
+            continue
+        for key in ("replaces", "replaced_by"):
+            if key not in issue:
+                continue
+            target = issue[key]
+            if not isinstance(target, str) or not target.strip():
+                errors.append(f"issues[{i}].{key}: nonempty issue ID required")
+            elif target == issue.get("id") or target not in seen:
+                errors.append(f"issues[{i}].{key}: must name another issue in this ledger")
+        if "replaced_by" in issue and issue.get("status") != "withdrawn":
+            errors.append(f"issues[{i}].replaced_by: replaced issue must be withdrawn")
     return errors
 
 
@@ -235,20 +256,21 @@ def validate_ledger_update(previous, current):
         new = current_by_id.get(old["id"])
         if new is None:
             errors.append(f"issues.{old['id']}: prior issue removed; withdraw with reason instead")
-        elif new["history"][:len(old["history"])] != old["history"]:
+            continue
+        # Independent checks: report every violated invariant, not only the first.
+        if new["history"][:len(old["history"])] != old["history"]:
             errors.append(f"issues.{old['id']}: prior history changed or truncated")
-        elif new["close_criterion"] != old["close_criterion"]:
+        if new["close_criterion"] != old["close_criterion"]:
             errors.append(f"issues.{old['id']}: close criterion changed; withdraw and replace with a linked issue")
-        if new is not None:
-            old_archive = old.get("resolution_history", [])
-            archive = new.get("resolution_history", [])
-            if not isinstance(archive, list) or archive[:len(old_archive)] != old_archive:
-                errors.append(f"issues.{old['id']}: prior resolution archive changed")
-            old_evidence = old.get("resolution_evidence")
-            if old_evidence and new.get("resolution_evidence") != old_evidence:
-                appended = archive[len(old_archive):] if isinstance(archive, list) else []
-                if not any(isinstance(a, dict) and a.get("evidence") == old_evidence for a in appended):
-                    errors.append(f"issues.{old['id']}: archive previous resolution evidence before replacing/removing it")
+        old_archive = old.get("resolution_history", [])
+        archive = new.get("resolution_history", [])
+        if not isinstance(archive, list) or archive[:len(old_archive)] != old_archive:
+            errors.append(f"issues.{old['id']}: prior resolution archive changed")
+        old_evidence = old.get("resolution_evidence")
+        if old_evidence and new.get("resolution_evidence") != old_evidence:
+            appended = archive[len(old_archive):] if isinstance(archive, list) else []
+            if not any(isinstance(a, dict) and a.get("evidence") == old_evidence for a in appended):
+                errors.append(f"issues.{old['id']}: archive previous resolution evidence before replacing/removing it")
     return errors
 
 
@@ -318,6 +340,16 @@ def validate_state(data):
     return errors
 
 
+def dependents(stages, seeds):
+    """All stages transitively depending on any seed (seeds included)."""
+    reached = set(seeds)
+    while True:
+        added = {name for name, s in stages.items() if any(d in reached for d in s["depends_on"])} - reached
+        if not added:
+            return reached
+        reached |= added
+
+
 def mark_stale(data, changes):
     errors = validate_state(data)
     if errors:
@@ -330,15 +362,11 @@ def mark_stale(data, changes):
     unmatched = set(changes) - known_sources
     if unmatched:
         raise ValueError(f"changes contain unregistered source IDs: {sorted(unmatched)}")
-    stale = {name for name, s in result["stages"].items()
-             if any(source_id(src) in changes and changes[source_id(src)] != ver for src, ver in s["inputs"].items())}
-    while True:
-        added = {name for name, s in result["stages"].items() if any(d in stale for d in s["depends_on"])} - stale
-        if not added:
-            break
-        stale |= added
-    for name in stale:
-        result["stages"][name]["status"] = "stale"
+    changed = {name for name, s in result["stages"].items()
+               if any(source_id(src) in changes and changes[source_id(src)] != ver for src, ver in s["inputs"].items())}
+    for name in dependents(result["stages"], changed):
+        if result["stages"][name]["status"] in STALEABLE:
+            result["stages"][name]["status"] = "stale"
     return result
 
 
@@ -352,25 +380,31 @@ def main():
     parser.add_argument("--root", type=Path, help="Explicit project root required for file verification")
     parser.add_argument("--sources", type=Path, help="Source ID to {path, version, sha256} registry")
     args = parser.parse_args()
-    if args.verify_files and (args.root is None or args.kind == "stale"):
-        parser.error("--verify-files requires --root and handoff, ledger or state")
+    if args.kind == "stale":
+        if args.changes is None:
+            parser.error("stale requires a changes JSON file")
+        if args.previous or args.verify_files or args.root or args.sources:
+            parser.error("stale accepts only STATE and CHANGES")
+    else:
+        if args.changes is not None:
+            parser.error("the CHANGES argument applies only to stale")
+        if args.previous and args.kind != "ledger":
+            parser.error("--previous applies only to ledger")
+        if args.verify_files and args.root is None:
+            parser.error("--verify-files requires --root")
+        if (args.root or args.sources) and not args.verify_files:
+            parser.error("--root and --sources apply only with --verify-files")
     try:
-        data = json.loads(args.path.read_text(encoding="utf-8"))
+        data = read_json(args.path)
         if args.kind == "stale":
-            if args.changes is None:
-                parser.error("stale requires a changes JSON file")
-            result = mark_stale(data, json.loads(args.changes.read_text(encoding="utf-8")))
+            result = mark_stale(data, read_json(args.changes))
             print(json.dumps(result, ensure_ascii=False, indent=2))
             return 0
         errors = {"handoff": validate_handoff, "ledger": validate_ledger, "state": validate_state}[args.kind](data)
         if args.previous:
-            if args.kind != "ledger":
-                parser.error("--previous applies only to ledger")
-            errors = validate_ledger_update(json.loads(args.previous.read_text(encoding="utf-8")), data)
+            errors = validate_ledger_update(read_json(args.previous), data)
         if args.verify_files:
-            if args.root is None or args.kind == "stale":
-                parser.error("--verify-files requires --root and handoff, ledger or state")
-            sources = json.loads(args.sources.read_text(encoding="utf-8-sig")) if args.sources else {}
+            sources = read_json(args.sources) if args.sources else {}
             if not errors:
                 errors.extend(verify_files(args.kind, data, args.root, sources))
         print(json.dumps({"valid": not errors, "scope": "structure_and_file_integrity" if args.verify_files else "structure_only", "scientific_correctness": "not_assessed", "errors": errors}, ensure_ascii=False))

@@ -28,7 +28,7 @@ After reviewing a stage's actual deliverables, record their bytes:
 
 `python SA/scripts/project_state.py record-outputs state-draft.json --root . --output state-with-hashes.json`
 
-This adds `output_versions` for stages already marked complete. It does not mark a stage complete or update input versions. Then check or save with file verification:
+This adds `output_versions` for stages already marked complete. It does not mark a stage complete or update input versions. If an output already has a recorded hash and its bytes have changed, the command refuses; re-review the changed output, then repeat with `--rerecord`. Then check or save with file verification:
 
 `python SA/scripts/validate_artifacts.py state state-with-hashes.json --root . --sources .start-accept/sources-v1.json --verify-files`
 
@@ -38,9 +38,9 @@ On resumption:
 
 `python SA/scripts/project_state.py resume .start-accept/state.json --root . --sources .start-accept/sources-v1.json --output .start-accept/resume-proposal.json`
 
-The command checks current input and completed-output files, identifies missing or changed evidence, marks affected stages and transitive dependents stale, and prints next-stage candidates. Prior `active` work also requires inspection; the command never launches duplicate work or treats interruption as completion. Existing output files and recorded input versions stay unchanged. Legacy complete stages without output hashes need rechecking and recording; they do not silently pass.
+The command checks current input and completed-output files, identifies missing or changed evidence, marks affected active/complete stages and their active/complete transitive dependents stale, and prints next-stage candidates. Pending, needs_decision and not_applicable stages keep their status; their unverifiable inputs or upstream changes appear in `status_preserved_notes`. Prior `active` work also requires inspection; the command never launches duplicate work or treats interruption as completion. Existing output files and recorded input versions stay unchanged. Legacy complete stages without output hashes need rechecking and recording; they do not silently pass.
 
-For canonical replacement, use `save` with `--expect-sha256` set to the current state/ledger file hash returned by a previous save. The helper locks the destination, rejects stale writers, archives prior bytes under `.history/`, and atomically replaces the file. Omitting the expected hash permits only a new destination. Ledger replacements also check immutable prior history and closure criteria.
+For canonical replacement, use `save` with `--expect-sha256` set to the current state/ledger file hash returned by a previous save (case-insensitive; only `save` accepts this option). The helper locks the destination, rejects stale writers, archives prior bytes under `.history/`, and atomically replaces the file. Omitting the expected hash permits only a new destination. Ledger replacements also check immutable prior history and closure criteria.
 
 Locks coordinate writers using this helper, not arbitrary external editors. Hard process termination can leave a `.lock` file; inspect its PID and destination before manually recovering it. Locks are never stolen by age. Atomic replacement protects against partial JSON writes, but is not a cross-file transaction or a distributed filesystem guarantee.
 

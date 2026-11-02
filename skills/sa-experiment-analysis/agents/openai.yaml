@@ -1,5 +1,5 @@
 interface:
-  display_name: "SA Experiment Analysis"
+  display_name: "Experiment Analysis"
   short_description: "Audit research results and bound empirical claims"
   default_prompt: "Use $sa-experiment-analysis to audit these results and identify supported claims."
 policy:

@@ -2,11 +2,11 @@
 
 安装完整插件，不能拆开安装单个技能。Install the complete plugin; individual skill folders depend on shared resources.
 
-ZIP 和 SHA-256 是可选分发与完整性校验文件，不是插件安装依赖。ZIP and SHA-256 are optional distribution and integrity-check artifacts, not installation dependencies.
+通过 Git 克隆仓库安装和更新。Clone the Git repository to install and update.
 
 ## Codex CLI
 
-在解压或克隆后的包根目录执行 / Run from the extracted or cloned package root:
+克隆后在仓库根目录执行 / Run from the cloned repository root:
 
 ```sh
 codex plugin marketplace add .
@@ -20,7 +20,7 @@ codex plugin list --marketplace start-accept-research --json
 
 ## 更新 / Update
 
-先更新完整本地包，再重新执行安装命令，并用 list 核对版本。保留旧包以便回退。Update the complete local package, repeat the install command and inspect the listed version. Keep the previous release for rollback. For Git installations, run `git pull --ff-only` from the package root first. Do not assume editing the source updates the installed cache automatically.
+在仓库根目录运行 `git pull --ff-only`，再重新执行安装命令并用 list 核对。更新源码不会自动更新安装缓存。Run `git pull --ff-only` from the repository root, repeat the install command and inspect the listed version. Updating source files does not automatically refresh the installed cache.
 
 ## 卸载 / Uninstall
 

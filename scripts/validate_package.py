@@ -45,13 +45,21 @@ def check(root=ROOT, runtime_only=False):
             errors.append(f"{name}: UI metadata missing")
         else:
             ui = yaml.safe_load(ui_path.read_text(encoding="utf-8"))
-            interface = ui.get("interface", {})
-            short = interface.get("short_description", "")
-            if not 25 <= len(short) <= 64:
+            interface = ui.get("interface") if isinstance(ui, dict) else None
+            policy = ui.get("policy", {}) if isinstance(ui, dict) else {}
+            if not isinstance(interface, dict):
+                errors.append(f"{name}: UI metadata needs an interface mapping")
+                interface = {}
+            if not isinstance(policy, dict):
+                errors.append(f"{name}: UI policy must be a mapping")
+                policy = {}
+            short = interface.get("short_description")
+            if not isinstance(short, str) or not 25 <= len(short) <= 64:
                 errors.append(f"{name}: short_description must be 25-64 characters")
-            if f"${name}" not in interface.get("default_prompt", ""):
+            prompt = interface.get("default_prompt")
+            if not isinstance(prompt, str) or f"${name}" not in prompt:
                 errors.append(f"{name}: prompt missing explicit invocation")
-            if ui.get("policy", {}).get("allow_implicit_invocation") is False:
+            if policy.get("allow_implicit_invocation") is False:
                 errors.append(f"{name}: automatic invocation unexpectedly disabled")
         statistics[name] = {"description_characters": len(description or ""), "body_words": len(content[match.end():].split())}
     if set(names) != EXPECTED or len(names) != len(EXPECTED):
@@ -69,12 +77,16 @@ def check(root=ROOT, runtime_only=False):
                     errors.append(f"{path.relative_to(root)}: broken/external package link {target}")
             if re.search(r"C:[\\/]|\.\./ccf-common|\.\./ccf-paper-writer|\.claude/CLAUDE", text):
                 errors.append(f"{path.relative_to(root)}: nonportable legacy reference")
-    if runtime_only:
+    eval_dir = root / "evals/cases"
+    if runtime_only or not eval_dir.is_dir():
+        # Development eval datasets are not distributed (see .gitignore); a
+        # public checkout validates runtime structure and says so explicitly.
         return {"valid": not errors, "errors": errors, "skills": statistics,
                 "scope": "runtime_structure", "routing_case_count": None,
+                "eval_inventory": "skipped_by_request" if runtime_only else "not_present_in_checkout",
                 "behavior_claim": "not assessed by this validator"}
     cases = []
-    for path in sorted((root / "evals/cases").glob("*.json")):
+    for path in sorted(eval_dir.glob("*.json")):
         cases.extend(json.loads(path.read_text(encoding="utf-8")))
     ids = [c.get("id") for c in cases]
     if len(ids) != 110 or len(set(ids)) != 110:
@@ -86,7 +98,8 @@ def check(root=ROOT, runtime_only=False):
     for case in cases:
         if not isinstance(case.get("should_trigger"), bool) or not isinstance(case.get("checks"), list) or not case["checks"]:
             errors.append(f"{case.get('id')}: checks and boolean expected trigger required")
-    return {"valid": not errors, "errors": errors, "skills": statistics, "routing_case_count": len(cases), "behavior_claim": "not assessed by this validator"}
+    return {"valid": not errors, "errors": errors, "skills": statistics, "scope": "runtime_structure_and_eval_inventory",
+            "routing_case_count": len(cases), "eval_inventory": "checked", "behavior_claim": "not assessed by this validator"}
 
 
 if __name__ == "__main__":

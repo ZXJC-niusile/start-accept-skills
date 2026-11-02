@@ -15,7 +15,7 @@ import validate_artifacts as checks
 
 
 def load(path):
-    return json.loads(Path(path).read_text(encoding="utf-8-sig"))
+    return checks.read_json(path)
 
 
 def now():
@@ -38,7 +38,7 @@ def atomic_save(path, data, expected="missing"):
             stream.flush()
             os.fsync(stream.fileno())
         actual = checks.file_hash(path) if path.exists() else "missing"
-        if actual != expected.removeprefix("sha256:"):
+        if actual != expected.strip().lower().removeprefix("sha256:"):
             raise ValueError(f"concurrent/stale write: expected {expected}, found {actual}")
         if actual != "missing":
             history = path.parent / ".history"
@@ -99,6 +99,10 @@ def transition(ledger, ident, status, reason, evidence, root, sources):
     issue["history"].append({"at": at, "status": status, "reason": reason})
     if status in {"deferred", "withdrawn"}:
         issue["reason"] = reason
+    else:
+        # The status reason describes the current deferral/withdrawal only;
+        # earlier reasons remain in history.
+        issue.pop("reason", None)
     if status == "resolved":
         issue["resolution_evidence"] = evidence
     errors = checks.validate_ledger_update(ledger, result)
@@ -114,11 +118,18 @@ def resume(state, root, sources):
     if errors:
         raise ValueError("; ".join(errors))
     result = copy.deepcopy(state)
-    reasons = {}
-    for name, stage in result["stages"].items():
+    stages = result["stages"]
+    reasons, notes = {}, {}
+    for name, stage in stages.items():
         problems = []
         for source, version in stage["inputs"].items():
             problems += checks.verify_source(source, version, root, sources)
+        if stage["status"] not in checks.STALEABLE:
+            # Unstarted work, open decisions and justified non-applicability
+            # keep their status; unverifiable inputs are reported, not "stale".
+            if problems:
+                notes[name] = [f"input not yet verifiable: {p}" for p in problems]
+            continue
         if stage["status"] == "complete":
             for output in stage["outputs"]:
                 problems += checks.verify_source(output, stage.get("output_versions", {}).get(output, "unknown"), root)
@@ -126,22 +137,21 @@ def resume(state, root, sources):
             problems.append("previous active execution has no verified completion; inspect before retry")
         if problems:
             reasons[name] = problems
-    while True:
-        added = {name: [f"dependency needs recheck: {dep}" for dep in stage["depends_on"] if dep in reasons]
-                 for name, stage in result["stages"].items() if name not in reasons}
-        added = {name: values for name, values in added.items() if values}
-        if not added:
-            break
-        reasons.update(added)
+    affected = checks.dependents(stages, reasons)
+    for name in affected - set(reasons):
+        message = [f"dependency needs recheck: {dep}" for dep in sorted(affected & set(stages[name]["depends_on"]))]
+        if stages[name]["status"] in checks.STALEABLE:
+            reasons[name] = message
+        else:
+            notes.setdefault(name, []).extend(message)
     for name, problems in reasons.items():
-        stage = result["stages"][name]
-        stage["status"] = "stale"
-        stage["recheck_reasons"] = problems
-    ready = [name for name, stage in result["stages"].items()
+        stages[name]["status"] = "stale"
+        stages[name]["recheck_reasons"] = problems
+    ready = [name for name, stage in stages.items()
              if stage["status"] in {"pending", "stale"}
-             and all(result["stages"][dep]["status"] in {"complete", "not_applicable"}
+             and all(stages[dep]["status"] in {"complete", "not_applicable"}
                      for dep in stage["depends_on"])]
-    return result, {"recheck": reasons, "next_candidates": ready,
+    return result, {"recheck": reasons, "status_preserved_notes": notes, "next_candidates": ready,
                     "note": "Candidates need the recorded evidence gaps resolved; no work is auto-executed."}
 
 
@@ -160,17 +170,20 @@ def main():
     restore.add_argument("path", type=Path)
     seal = commands.add_parser("record-outputs", help="Record current output hashes for already-reviewed complete stages")
     seal.add_argument("path", type=Path)
+    seal.add_argument("--rerecord", action="store_true",
+                      help="Allow replacing previously recorded output hashes whose files changed (re-review first)")
     save = commands.add_parser("save", help="Validate and atomically save a candidate state or ledger")
     save.add_argument("kind", choices=["state", "ledger"])
     save.add_argument("path", type=Path)
+    save.add_argument("--expect-sha256", default="missing", help="Current destination hash for intentional replacement")
     for command in (snap, move, restore, seal, save):
         command.add_argument("--root", type=Path, required=True)
         command.add_argument("--output", help="Path inside root; omitted means print proposal only")
-        command.add_argument("--expect-sha256", default="missing", help="Current destination hash for intentional replacement")
-        command.add_argument("--sources", type=Path)
+    for command in (move, restore, save):
+        command.add_argument("--sources", type=Path, help="Source ID to {path, version, sha256} registry")
     args = parser.parse_args()
     try:
-        sources = checks.source_map(load(args.sources)) if args.sources else {}
+        sources = checks.source_map(load(args.sources)) if getattr(args, "sources", None) else {}
         report = {}
         if args.command == "snapshot":
             result = snapshot(args.root, args.files)
@@ -184,10 +197,22 @@ def main():
             errors = checks.validate_state(result)
             if errors:
                 raise ValueError("; ".join(errors))
-            for stage in result["stages"].values():
-                if stage["status"] == "complete":
-                    stage["output_versions"] = {p: "sha256:" + checks.file_hash(checks.local_path(args.root, p))
-                                                for p in stage["outputs"]}
+            changed = {}
+            for name, stage in result["stages"].items():
+                if stage["status"] != "complete":
+                    continue
+                previous = stage.get("output_versions", {})
+                current = {p: "sha256:" + checks.file_hash(checks.local_path(args.root, p)) for p in stage["outputs"]}
+                differing = [p for p, v in current.items()
+                             if p in previous and previous[p].lower() != v]
+                if differing:
+                    changed[name] = differing
+                stage["output_versions"] = current
+            if changed and not args.rerecord:
+                raise ValueError(f"recorded outputs changed since last recording: {changed}; "
+                                 "re-review them, then pass --rerecord")
+            if changed:
+                report["rerecorded_changed_outputs"] = changed
             report["note"] = "Recorded current bytes only; this does not approve the stage or refresh its input versions."
         else:
             result = load(args.path)
@@ -204,7 +229,8 @@ def main():
             destination = checks.local_path(args.root, args.output)
             if args.command != "save" and destination.exists():
                 raise ValueError("use a new output path; only save supports canonical replacement")
-            report.update(output=str(destination), sha256=atomic_save(destination, result, args.expect_sha256))
+            expected = args.expect_sha256 if args.command == "save" else "missing"
+            report.update(output=str(destination), sha256=atomic_save(destination, result, expected))
             print(json.dumps(report, ensure_ascii=False, indent=2))
         else:
             print(json.dumps({"data": result, **report}, ensure_ascii=False, indent=2))
