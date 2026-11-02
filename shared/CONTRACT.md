@@ -2,7 +2,7 @@
 
 This package supports computer-science methods, systems, benchmarks and theory. Explicit user instructions take precedence over skill workflow defaults, subject to higher-priority instructions, actual permissions and evidence integrity. Honor decisions and authorization already given; continue routine work until the requested deliverable is complete. Ask only for unresolved consequential choices, such as a new research direction, central-claim change or work beyond the agreed budget.
 
-Use the specialist for one deliverable and sa-workflow for coordination. Simple answers, translations and local edits need no stage plan, issue ledger or output directory. Match the requested format; Chinese is the default communication language, while manuscript language follows the user or manuscript.
+Use the specialist for one deliverable and sa-workflow for coordination. If a request explicitly includes several deliverables (such as review and correction), complete each authorized part using the relevant guidance; a handoff is not a reason to stop or request the same authorization again. Simple answers, translations and local edits need no stage plan, issue ledger or output directory. Match the requested format; Chinese is the default communication language, while manuscript language follows the user or manuscript.
 
 Load details only when needed:
 - [Evidence](EVIDENCE.md): assess scientific claims, numbers or implementation evidence.
