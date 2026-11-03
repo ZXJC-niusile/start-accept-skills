@@ -1,6 +1,5 @@
 dist/
 evals/
-tests/
 __pycache__/
 *.py[cod]
 .env

@@ -49,6 +49,7 @@ codex plugin add start-accept-skills@start-accept-research
 ```sh
 python -m pip install -r requirements-dev.txt
 python scripts/validate_package.py
+python -B -m unittest discover -s tests -v
 ```
 
 通过 Git 仓库分发和更新，不再提供独立 ZIP 发布包。结构校验不代表科研结论正确或模型效果提升，已有验证范围见[评测记录](docs/EVALUATION.md)。
