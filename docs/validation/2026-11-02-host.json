@@ -1,0 +1,109 @@
+{
+  "date": "2026-11-02",
+  "version": "0.1.4",
+  "status": "candidate_pending_PR_merge",
+  "runtime_base_commit": "4c9522af4937405feffaaffcd6a4cf20bc252d51",
+  "runtime_delta": "plugin.json version changed from 0.1.3 to 0.1.4",
+  "host": "Windows; codex-cli 0.166.0",
+  "first_attempt": {
+    "requested_model": "configured default gpt-5.5",
+    "result": "failed before task execution",
+    "error": "The 'gpt-5.5' model is not supported when using Codex with a ChatGPT account."
+  },
+  "retry": {
+    "requested_model": "gpt-6-astra",
+    "reasoning_effort": "inherited configuration; not independently recorded",
+    "sandbox": "read-only",
+    "exit_code": 0,
+    "available_skills": [
+      "sa-code-audit",
+      "sa-experiment-analysis",
+      "sa-figure-production",
+      "sa-paper-reading",
+      "sa-paper-writing",
+      "sa-research-design",
+      "sa-revision-check",
+      "sa-scientific-review",
+      "sa-submission-check",
+      "sa-topic-selection",
+      "sa-workflow"
+    ],
+    "reads": [
+      {
+        "path": "skills/sa-paper-writing/SKILL.md",
+        "exit_code": 0
+      },
+      {
+        "path": "shared/EVIDENCE.md",
+        "exit_code": 0
+      }
+    ],
+    "revised_sentence": "Our development pilot suggests that the method may reduce unnecessary revalidation, although this finding has yet to be confirmed on held-out repositories."
+  },
+  "runtime_file_sha256": {
+    "plugin.json": "d26b4ef2873262a5c28a5b36fbb0ce41426d1e8b9c25c15007c0ae5d99f88941",
+    "skills/sa-code-audit/SKILL.md": "8895243b974c7f6fe2fb716ff0704e5aee4e7fbdf6737a032a74f9d6450244fa",
+    "skills/sa-experiment-analysis/SKILL.md": "8a16c2a40bf426200a9a8403fa191e2f199da8d7054a4e6a711ecf1827157c11",
+    "skills/sa-figure-production/SKILL.md": "4d5932c0347145800d4d62ef091aa54c077c63779a4d1a763d88f682aab112f6",
+    "skills/sa-paper-reading/SKILL.md": "abe4fa73c5389e78737cd755ca6908003afeb99a4562d860a12e9d9a0b7919f1",
+    "skills/sa-paper-writing/SKILL.md": "ad812e821a02d95a43def54348b3b11416de4a3a4437ba71d732e9aa473ea925",
+    "skills/sa-research-design/SKILL.md": "ce7e3cfc18bbe92a686881c1e5a534bfd40669ac4646e9e0d416fdf3242fc4cc",
+    "skills/sa-revision-check/SKILL.md": "b10a8101f49fb2812f5e4d27e38a348d50ebd8bfd766e11b5b8b522a79d175bd",
+    "skills/sa-scientific-review/SKILL.md": "1df5f1892b7c3c4d761d71d77c6d8267fd861ed51d3b8635f8547e3fb024ff47",
+    "skills/sa-submission-check/SKILL.md": "c99adfef0b99080b9e6d0f82442da728aa5f57699b59b586f4c6627b6f72b306",
+    "skills/sa-topic-selection/SKILL.md": "b3124c69f91856857dd30fc8b6867132ea7db72cae90f0ec5d0291dc44807228",
+    "skills/sa-workflow/SKILL.md": "501c96e1eac8fe257a014f64d4980e723d59383b5761f66ed1933a5d76cf6fef",
+    "skills/sa-workflow/agents/openai.yaml": "80bd50ef4ec30d0d6ddaeb104e65b61af8e49dd7b5bf9f5a7abfb1e25a62d43d",
+    "skills/sa-workflow/references/state.example.json": "a56ac7f4786fa752cc6e2c823e66cfff3cd366e3a62b3d5521f9fd4e6cfc9bce",
+    "skills/sa-workflow/references/state.md": "39b977ad076361dc27dd5ff269f6a8e54c86cd516dea1716dcdfc378281017a3",
+    "skills/sa-topic-selection/agents/openai.yaml": "879552505ed92e0e8d802c91fd62667e4df7c34159d3ba3442ce5756b2bd5823",
+    "skills/sa-topic-selection/references/decision-table.md": "51abd0b3b98c50396727bbcf2f1f4dcf21992a06021a2a3890eddb446c6c53a0",
+    "skills/sa-submission-check/agents/openai.yaml": "b2eff9d8d0af8069f6020017db864ebf63644e7bd0e09d5390423b8e26710a25",
+    "skills/sa-submission-check/references/checklist.md": "ee8e0029c50b2b622919b49180998c3bf32acc2f6a5d93ac9a36405e75b2024f",
+    "skills/sa-submission-check/templates/report.md": "8bea50d4ec5e3e276fc16f680c7b84f16ebf848d684e97fb0d612ab7d1ce44e9",
+    "skills/sa-scientific-review/agents/openai.yaml": "fb08238af543968e5bb741f81b33fd91502617dd8c0f320f8cd32cb2f57e9555",
+    "skills/sa-scientific-review/references/panels.md": "368f4e113d710be9d7c6d52747016ddd0bc4ae8e3d7d6993eb8287467411a13e",
+    "skills/sa-scientific-review/references/scientific-criteria.md": "6a2f1486cab61622709779285a11925e2951fdc8ab40e52a4a28e01645a62ff5",
+    "skills/sa-scientific-review/templates/report.md": "58b31e24fe529d7339fdf80f14772ab9476624b059f1f91700428bd1994c8a42",
+    "skills/sa-revision-check/agents/openai.yaml": "d66c84962345028706bfea1572b8660f6b6a7dbc32291398489c731787ecbc5e",
+    "skills/sa-revision-check/references/verification.md": "4c4e692368acaf22c371f58b1152b1584b30650f4a0d0612be9b800c5e9981e5",
+    "skills/sa-revision-check/templates/report.md": "5dc577d3ccc882b3564610be5684dcaab32b3bad0a10680d01b788e627680738",
+    "skills/sa-research-design/agents/openai.yaml": "171b5f2090acc6d1063bd5b095e70808f20d41298005436523884fa24511ab52",
+    "skills/sa-research-design/references/study-modes.md": "acaf9a784d367c46092c33041ecbb3314a4d6753abba47a3882af4f1335fff41",
+    "skills/sa-paper-writing/agents/openai.yaml": "db0df88522cc950e66614ad3891b491a88de260ef72aefd96adf96f935105377",
+    "skills/sa-paper-writing/references/section-guidance.md": "e4a4381456880d08eb9eec4e43c5836609ac5c74ff0cb7d5726e66f30c22b6e4",
+    "skills/sa-paper-writing/templates/writing-handoff.md": "c64c55018b0a86572aa0c91c199e2543da12d908a447437eff47ca265cf4d40f",
+    "skills/sa-paper-reading/agents/openai.yaml": "f844fa82c8879fe59b62916c45954b3335584d893074c515659225a72300a8ad",
+    "skills/sa-paper-reading/references/literature-card.md": "42dd1c3e3eaabe30339632889cc972fbe3d5e72679f05cb431894e1af27da541",
+    "skills/sa-figure-production/agents/openai.yaml": "69a139ec47386bf8a9057a62b4555e84f9b3a84299816622fef6bf745bb0ec4b",
+    "skills/sa-figure-production/references/production-guide.md": "f4b5cbe8be182242218c9fb22e8819433847ee1c7ceb4be1a4c784218d5f11ed",
+    "skills/sa-figure-production/templates/figure-record.md": "841b2f5a4efc783ecf990d01d1a3fffd3276048f0ab78311ebf634b42784e914",
+    "skills/sa-experiment-analysis/agents/openai.yaml": "cbf7092a2e705d2b514761e7fdf6c5b0fbaf6a38ba2489809818a4d9e6497c8f",
+    "skills/sa-experiment-analysis/references/analysis-checks.md": "44ce424f1f0ef72fc3be1cf4b1530e229a94bd12d89725a6bae472d29c3e9db2",
+    "skills/sa-experiment-analysis/templates/claim-table.md": "454faf7f6dca918e000ef5198e0df78723eeec871950113f4d7298f8c4232ea9",
+    "skills/sa-code-audit/agents/openai.yaml": "ab1738924743e7e9eb32bcc1eb2b4b72f86c85ff75fc7ec5ef6c7a4204cad6c4",
+    "shared/CONTRACT.md": "6c5248f8a517f9bb3e783288c8d59a3b1deb282e80c3c99ac5422510bd5135d4",
+    "shared/EVIDENCE.md": "4429e518ea66cabb12f65755a6c50bcc8f6b65fcec74409e0d0cd641277865f4",
+    "shared/handoff.example.json": "b17fa9d03ed53289335e40456577ee80916f0593459cbccc568b42a9a230913e",
+    "shared/HANDOFF.md": "2425c458608412eb65659b817e7511f942ff6fba558174ed2bade48504d032c3",
+    "shared/ISSUES.md": "1d25c27021900d87e4296093a1a3ef54b96e670e2ee77a6dfeb34f3c8c47795e",
+    "shared/LOCAL_OPERATIONS.md": "19879d130217fdc4315ea152f6d126ad1154c2b58ed7fa3bbbdd13ff69f5bb54",
+    "scripts/build_release.py": "d726624ae7a1d229bfd0b9f2e8ae7712aa7b05c9561e8078d64e18ffb21b89f5",
+    "scripts/project_state.py": "abe710c2bb4df66844b46d48d7cfd3b66786f77babb4dce07f34b4b8b327f94f",
+    "scripts/validate_artifacts.py": "49fc67d5b0562e4d457b44dbccab7d21a0977aada7fb0c10a9bb79f1a9fa1930",
+    "scripts/validate_package.py": "dd26c09107d3b596b95e8ed05934bdebed7d48a79ddede1e22caaa3d984cf1e6"
+  },
+  "checks": {
+    "installed_version": "0.1.4",
+    "enabled": true,
+    "runtime_file_count": 51,
+    "runtime_hash_match": "51/51 matched after final refresh",
+    "clean_export_regressions": "passed at 4c9522a"
+  },
+  "not_checked": [
+    "desktop UI refresh",
+    "implicit routing across installed plugins",
+    "all skills invoked independently",
+    "scientific correctness"
+  ]
+}

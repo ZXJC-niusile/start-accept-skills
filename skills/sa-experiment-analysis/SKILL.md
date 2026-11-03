@@ -19,4 +19,4 @@ Determine what the available measurements support. Use [shared principles](../..
 
 Answer a narrow numerical question directly with the calculation, denominator and material limitation. For a reusable analysis report, use the [claim table](templates/claim-table.md). Record commands and outputs for calculations actually run.
 
-If additional experiments are necessary, specify the missing evidence for [research design](../sa-research-design/SKILL.md); do not launch them from this skill. When manuscript or figure work is also authorized, pass verified values and claim bounds to [writing](../sa-paper-writing/SKILL.md) or [figures](../sa-figure-production/SKILL.md) and continue the requested work.
+If additional experiments are necessary, specify the missing evidence for [research design](../sa-research-design/SKILL.md); do not launch them from this skill. Use [writing](../sa-paper-writing/SKILL.md) or [figures](../sa-figure-production/SKILL.md) for requested manuscript or figure work, carrying over verified values and claim bounds.

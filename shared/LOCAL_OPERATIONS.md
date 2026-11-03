@@ -48,4 +48,4 @@ Locks coordinate writers using this helper, not arbitrary external editors. Hard
 
 Without `--verify-files`, `validate_artifacts.py` reports `scope: structure_only`. Strict mode reports file integrity separately from scientific correctness. Ledger strict mode checks currently resolved evidence; state strict mode checks complete stages; handoff strict mode checks inputs and evidence anchors.
 
-Manual `stale STATE CHANGES` accepts equivalent `./data.csv` and `data.csv` spellings, but rejects unregistered source IDs and conflicting aliases. Logical IDs remain case-sensitive. Prefer `resume` when actual files are available, since it also detects missing files and changed outputs.
+For manual version changes, use `stale STATE CHANGES` under the [state rules](../skills/sa-workflow/references/state.md). Prefer `resume` when actual files are available, since it also detects missing files and changed outputs.

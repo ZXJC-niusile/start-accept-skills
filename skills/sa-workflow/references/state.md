@@ -19,4 +19,6 @@ Manual `stale` compares supplied versions for equality, not chronological order.
 
 The coordinator writes canonical state; workers return proposals. Use the user's location or `.start-accept/state.json`, source registries under `.start-accept/`, and versioned stage artifacts under `.start-accept/<run-id>/`. Retain prior evidence.
 
-From the research project directory, check structure with `python "SA/scripts/validate_artifacts.py" state PATH`, replacing `SA` with the package's absolute path. For source registration, reviewed-output recording, file verification and locked saves, use [local operations](../../../shared/LOCAL_OPERATIONS.md). Structural validity and byte identity do not establish scientific correctness. Legacy complete stages without hashes require rechecking before file-verified completion.
+Check structure from the research project directory with `python "SA/scripts/validate_artifacts.py" state PATH`; replace `SA` with the package's absolute path.
+
+Use [local operations](../../../shared/LOCAL_OPERATIONS.md) to register sources, record reviewed outputs and save state with file verification. Legacy complete stages without hashes require rechecking first.
