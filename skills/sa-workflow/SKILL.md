@@ -30,9 +30,9 @@ Propose only the stages needed for the goal. A typical empirical study moves fro
 
 Each stage has one primary owner, explicit inputs, output and completion condition. Parallelize independent reading or checks only when authorized; keep shared-state writes with the coordinator. Code implementation and experiment execution are ordinary project tasks outside the specialist skills' ownership: hand off a concrete spec and authorized budget, then resume from actual outputs.
 
-Continue routine authorized work inside a stage. Stop for an unresolved topic commitment, central-claim change, or work outside the agreed budget/authorization, presenting a concrete decision and supporting evidence. Do not ask again for decisions already made. A writing edit requested by the user is already authorized; a review finding alone does not authorize that edit.
+For decisions requiring user input under the shared principles, present the concrete choice and supporting evidence. A review finding alone does not authorize editing the manuscript.
 
-For multi-stage projects, use the user's artifact location or `.start-accept/`: keep the state JSON there and immutable stage artifacts under `.start-accept/<run-id>/`. Read [state contract](references/state.md) only when persisting/resuming. Update stage outputs and inputs with versions, not just a status flag. If upstream inputs changed, mark affected downstream stages stale before relying on their results.
+When persisting or resuming, follow the [state contract](references/state.md) for storage, versions and stale propagation. Update input and output versions along with stage status.
 
 ## Complete
 

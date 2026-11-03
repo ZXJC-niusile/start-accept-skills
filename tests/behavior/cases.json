@@ -1,0 +1,45 @@
+[
+  {
+    "id": "short_edit",
+    "skills": [
+      "sa-paper-writing"
+    ],
+    "request": "请直接润色这一句英文，保留不确定性，只给改写句子：Our development pilot suggests that the method may reduce unnecessary revalidation, but this has not been confirmed on held-out repositories."
+  },
+  {
+    "id": "function_explanation",
+    "skills": [
+      "sa-code-audit"
+    ],
+    "request": "解释这个函数遇到重复 id 时返回什么；这是全部代码，不用检查其他代码。\ndef last_by_id(rows):\n    result = {}\n    for row in rows:\n        result[row[\"id\"]] = row\n    return list(result.values())"
+  },
+  {
+    "id": "metric_design",
+    "skills": [
+      "sa-research-design"
+    ],
+    "request": "我们只评价系统能否在输入完全相同、结果缓存有效时避免重复运行。请设计一个主指标和最小验证办法，不需要完整实验方案。系统正确复用缓存就算满足目标；不考查输出质量。"
+  },
+  {
+    "id": "version_comparison",
+    "skills": [
+      "sa-revision-check"
+    ],
+    "request": "比较下面两个版本的主张强度，仅分析文字变化，没有历史审稿意见。v1: Our method generalizes to unseen repositories. v2: Our method improved results on two development repositories; generalization to unseen repositories remains untested."
+  },
+  {
+    "id": "review_and_edit",
+    "skills": [
+      "sa-scientific-review",
+      "sa-paper-writing"
+    ],
+    "request": "检查这句话是否被给定证据支持，然后直接改写成英文，不需要我再确认。原句：Our method significantly outperforms the baseline across repositories. 证据：只在两个开发仓库比较，均值从10变为12，数值越大越好；未进行显著性检验，没有留出仓库结果。"
+  },
+  {
+    "id": "resume_project",
+    "skills": [
+      "sa-workflow"
+    ],
+    "request": "恢复这个研究项目，只检查状态和指出下一步，不运行实验，不修改原输入文件。使用 state.json 和当前文件，保留已有决定。"
+  }
+]

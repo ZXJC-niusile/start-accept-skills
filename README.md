@@ -52,6 +52,6 @@ python scripts/validate_package.py
 python -B -m unittest discover -s tests -v
 ```
 
-Distribution and updates use Git; standalone ZIP releases are discontinued. Structural validation does not establish scientific correctness or improved model performance. See the [evaluation record](docs/EVALUATION.md).
+Distribution and updates use Git. Check scope and results are in the [evaluation record](docs/EVALUATION.md).
 
 [Maintenance history](docs/RELEASE.md) · [MIT license](LICENSE) · [Third-party sources](NOTICE.md)

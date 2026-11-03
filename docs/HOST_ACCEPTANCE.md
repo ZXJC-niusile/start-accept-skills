@@ -1,5 +1,7 @@
 # 宿主验收 / Host acceptance
 
+最新候选版检查见 [0.1.4 CLI 验收](validation/2026-11-02-host.md)。下文保留 0.1.3 的历史记录。
+
 Date: 2026-10-17. Package: 0.1.3. Host: Windows, Codex CLI 0.162.1.
 
 | 检查 / Check | 结果 / Result |
@@ -21,4 +23,4 @@ Input: “Our development pilot suggests that the method may reduce unnecessary 
 
 Output: “Our development pilot suggests the method may reduce unnecessary revalidation, but this remains unconfirmed on held-out repositories.”
 
-这是一次范围有限的安装与调用检查，不是全部科研能力验收。原始轨迹与本机路径仅保留在开发评测目录，不纳入公开包。This scoped smoke check does not establish all scientific behaviors or desktop UI activation. Raw traces and local paths remain outside the public distribution.
+This scoped smoke check does not establish all scientific behaviors or desktop UI activation. Raw traces and local paths remain outside the public distribution.
