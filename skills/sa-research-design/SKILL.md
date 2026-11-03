@@ -5,20 +5,19 @@ description: Turn a selected computer-science question into a testable method, s
 
 # Design a testable study
 
-Build an executable research specification within the stated resource envelope. Apply the [shared contract](../../shared/CONTRACT.md). Drafting a design does not authorize experiments, data collection, or changing a chosen central claim.
+Develop the requested part of a study within its chosen question and resource envelope. Follow the [shared contract](../../shared/CONTRACT.md). Design work alone does not authorize experiments, data collection or a change to the central claim.
 
-## Core specification
+## Design
 
-- State the question, claimed contribution under investigation, prior-work evidence, target population/setting, and assumptions. If the question itself is undecided, offer bounded alternatives and hand selection to [topic selection](../sa-topic-selection/SKILL.md).
-- Connect the motivating limitation to the proposed mechanism, actual implementation challenges, and observations that would test it. Allow many-to-many relationships where justified; do not invent modules to fill a fixed template.
-- For each question, specify comparison units, interventions and controls, relevant baselines, metrics and direction, denominators, repeated-measure unit, uncertainty method, negative outcomes, and predeclared success/failure criteria. Missing thresholds remain explicit decisions; do not invent a scientifically justified threshold from convention alone.
-- Preserve the selected construct in the primary metric: could a system fully meet the user's stated target yet fail your metric solely because you added another capability? If so, revise the metric. Put broader capabilities in optional diagnostics or a clearly pending scope-change proposal; protocol design does not authorize that expansion.
-- Select strong and relevant baselines, including plausible adaptations of existing approaches, with comparable tuning, data access, tools, and compute; record justified deviations. Identify the proposed increment over the strongest relevant comparator and the comparison that isolates it. Choose sample/repetition counts from precision, variance, paired structure, and budget, not universal minimums. Specify development versus final evaluation and controls against test-set adaptation.
-- Define data provenance and versioning, split/grouping unit, leakage checks, failure/exclusion policy, and reproducibility records (code/config/data/model versions and run IDs). Denominators must preserve declared failure handling rather than silently omit failed outputs.
-- Read [study modes](references/study-modes.md) only for the relevant method/system, benchmark, or theory details. Separate planned evidence from already observed evidence.
+- Establish the question, contribution, target setting and available evidence. If the question is undecided, identify the choice for [topic selection](../sa-topic-selection/SKILL.md).
+- Connect the motivating gap to the mechanism and an observation or counterexample that could test it. Preserve the selected construct: a system that meets the user's target must not fail the primary metric solely because an extra capability was added. Keep broader diagnostics optional.
+- Specify the relevant comparison unit, intervention/control, metric direction, denominator, uncertainty and success/failure criteria. Derive thresholds and repetition counts from the question, variance and budget; leave unsupported choices explicit.
+- Compare against the strongest relevant baseline, including plausible adaptations, with comparable resources and data access. Identify the comparison that isolates the proposed increment.
+- Specify data versions, split/grouping units, leakage controls, failed-run handling and reproducibility records where applicable. Separate development from final evaluation and planned evidence from observations.
+- Read [study modes](references/study-modes.md) for method/system, benchmark or theory details needed by this task.
 
-## Deliver and hand off
+## Deliver
 
-Provide a research specification, experiment/proof-obligation matrix, prioritized execution order, resource estimate with assumptions, and unresolved decisions. Include the measurement or counterexample that could invalidate the central claim. No manuscript prose, simulated results, or invented expected findings.
+For a local request such as one metric or ablation, return that design, its rationale and a minimal validation method. For a full study, provide a specification, experiment/proof matrix, execution priorities, resource assumptions and unresolved decisions. Include what would weaken the central claim; do not invent results.
 
-Implementation questions pass to [code audit](../sa-code-audit/SKILL.md) if code exists; actual coding and execution follow the project task. Result records go to [experiment analysis](../sa-experiment-analysis/SKILL.md). Paper outlines and prose go to [paper writing](../sa-paper-writing/SKILL.md). A user asking only to analyze existing results should go directly to the analysis owner.
+Actual implementation and execution follow the authorized project task. Existing-code questions may use [code audit](../sa-code-audit/SKILL.md); measured results use [experiment analysis](../sa-experiment-analysis/SKILL.md); manuscript drafting uses [paper writing](../sa-paper-writing/SKILL.md).
