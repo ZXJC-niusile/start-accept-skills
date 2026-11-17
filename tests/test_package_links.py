@@ -15,8 +15,8 @@ class PackageLinks(unittest.TestCase):
         with tempfile.TemporaryDirectory(prefix="sa-links-") as directory:
             root = Path(directory) / "package"
             shutil.copytree(ROOT, root, ignore=shutil.ignore_patterns(
-                ".git", "dist", "evals", "__pycache__"))
-            for relative in ("README.md", "docs/INSTALL.md", "provenance/workflow-audit.md"):
+                ".git", "evals", "__pycache__"))
+            for relative in ("README.md", "README.en.md", "skills/sa-workflow/references/state.md"):
                 with self.subTest(document=relative):
                     path = root / relative
                     original = path.read_text(encoding="utf-8")
@@ -29,6 +29,12 @@ class PackageLinks(unittest.TestCase):
                     finally:
                         path.write_text(original, encoding="utf-8")
             self.assertTrue(validate_package.check(root, runtime_only=True)["valid"])
+
+    def test_readmes_link_each_other(self):
+        chinese = (ROOT / "README.md").read_text(encoding="utf-8")
+        english = (ROOT / "README.en.md").read_text(encoding="utf-8")
+        self.assertIn("](README.en.md)", chinese)
+        self.assertIn("](README.md)", english)
 
 
 if __name__ == "__main__":

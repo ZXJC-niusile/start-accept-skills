@@ -159,6 +159,13 @@ def validate_handoff(data):
     for key in ("inputs", "evidence", "conclusions", "unknowns", "outputs"):
         if not isinstance(data.get(key), list):
             errors.append(f"handoff.{key}: array required")
+    for key in ("conclusions", "unknowns"):
+        for i, item in enumerate(data.get(key) if isinstance(data.get(key), list) else []):
+            if not isinstance(item, str) or not item.strip():
+                errors.append(f"handoff.{key}[{i}]: nonempty string required")
+    for i, item in enumerate(data.get("outputs") if isinstance(data.get("outputs"), list) else []):
+        if not (isinstance(item, str) and item.strip()) and not isinstance(item, dict):
+            errors.append(f"handoff.outputs[{i}]: path string or object required")
     for i, item in enumerate(data.get("inputs", []) if isinstance(data.get("inputs"), list) else []):
         if not isinstance(item, dict) or not all(isinstance(item.get(k), str) and item[k].strip() for k in ("source", "version")):
             errors.append(f"handoff.inputs[{i}]: source and version required")
@@ -314,6 +321,12 @@ def validate_state(data):
             errors.append(f"stages.{name}.output_versions: path-to-version map required")
         if stage.get("status") == "complete" and not outputs:
             errors.append(f"stages.{name}: complete requires an output")
+        if (stage.get("status") == "complete" and isinstance(outputs, list)
+                and all(isinstance(v, str) for v in outputs)
+                and isinstance(stage.get("output_versions"), dict)):
+            orphans = sorted(set(stage["output_versions"]) - set(outputs))
+            if orphans:
+                errors.append(f"stages.{name}.output_versions: paths not listed in outputs: {orphans}")
         if stage.get("status") == "not_applicable" and not stage.get("reason"):
             errors.append(f"stages.{name}: not_applicable requires reason")
     visiting, visited = set(), set()

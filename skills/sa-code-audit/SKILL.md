@@ -5,22 +5,18 @@ description: Inspect research code architecture, behavior, changes, or consisten
 
 # Research code audit
 
-Answer the concrete implementation question with source or execution evidence. Use [shared principles](../../shared/CONTRACT.md) and [evidence guidance](../../shared/EVIDENCE.md) for consequential findings; [handoffs](../../shared/HANDOFF.md) apply only when passing work onward.
+Answer the implementation question with source or execution evidence. Use [evidence guidance](../../shared/EVIDENCE.md) for consequential findings and [shared principles](../../shared/CONTRACT.md) for project work.
 
-## Ground the investigation
+## Investigate
 
-Read applicable project instructions, inspect current revision and dirty changes, and identify the relevant entry point, configuration and tests. If there is no Git history, record that and use file hashes or an identified snapshot. Resolve actual base/head for change reviews. Read only documentation relevant to the question; treat documentation as intent to verify against code.
+- Scope the inspection to the supplied code or relevant repository path. For repository changes, identify the revision, dirty files and actual base/head. Use a file version when Git history is unavailable.
+- Establish the expected behavior from the question, protocol, interface or an independent example. Trace the relevant inputs, decisions, state and outputs; follow dependencies only when they can change the answer.
+- For research claims, check relevant split boundaries, preprocessing, denominators, cache identity and run provenance. Systems questions may instead require workload, resource or concurrency checks.
+- Use a focused check or isolated reproducer when useful and authorized. Record commands and observations. A read-only audit does not authorize source edits, dependency installation, full experiments or external service changes.
+- Distinguish inspected source, observed execution and inference. Source-derived reachability is not a runtime trace, and passing tests do not establish empirical paper claims.
 
-Choose the smallest useful investigation: architecture orientation, a runtime/data path, change impact, or implementation-versus-requirement verification. Establish the oracle: supplied protocol, public interface, expected examples or a test independent of the implementation. If code is missing, report that limitation; a paper's pseudocode is not evidence of the repository behavior.
+## Deliver
 
-Trace inputs through transformations, decisions, mutable state, side effects and outputs/failures. Expand into dependencies when they can change the answer. Check data split boundaries, preprocessing fit scope, evaluation denominators, cache identity, seeds and checkpoint provenance when those affect a research claim. For systems work inspect configuration, workload, concurrency or failure behavior as relevant; do not impose every possible check.
+For a narrow question, return the answer and its supporting code location or supplied snippet. Add a behavior map, severity-ranked findings or requirement-to-evidence table only when the requested investigation needs them. State material missing evidence and stop when the question is answered.
 
-## Verify and report
-
-Use existing safe focused checks or an isolated reproducer when useful and authorized. Record exact commands and observed outcomes. Do not edit source files, install dependencies, run full experiments or touch external services merely to complete a read-only audit. A request to fix an identified issue hands implementation back to the host's normal coding workflow with the audit evidence.
-
-Distinguish `code_observation` with `source` basis from `runtime` basis; source-derived reachability is not an observed execution trace. Record inferred edges, missing specifications, skipped checks and environment failures explicitly. Passing tests establish only the tested properties, not the paper's empirical claims.
-
-Deliver a direct answer, scope/revision, minimal behavior map, severity-ranked findings with file/symbol/line anchors, requirement-to-evidence table and the smallest useful next check. For figure-ready explanations hand off the supported architecture to [sa-figure-production](../sa-figure-production/SKILL.md); for measured outcomes use [sa-experiment-analysis](../sa-experiment-analysis/SKILL.md).
-
-Stop when the requested behavior has a supported answer or a precise missing-evidence boundary. Do not expand a narrow audit into a full repository census.
+For an authorized fix, carry the evidence into the host's coding workflow. Use [handoffs](../../shared/HANDOFF.md) only when passing work onward; supported architecture can go to [figure production](../sa-figure-production/SKILL.md), and measured outcomes to [experiment analysis](../sa-experiment-analysis/SKILL.md).
