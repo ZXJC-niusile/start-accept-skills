@@ -1,8 +1,6 @@
-dist/
 evals/
 __pycache__/
 *.py[cod]
 .env
 .env.*
 !.env.example
-RELEASE-MANIFEST.json

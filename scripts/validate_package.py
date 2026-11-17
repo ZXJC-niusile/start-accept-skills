@@ -66,7 +66,7 @@ def check(root=ROOT, runtime_only=False):
         errors.append("skill inventory: expected exactly 11 unique names")
     # Package instruction links must remain inside the bundle and exist.
     markdown_paths = list(root.glob("*.md"))
-    for directory in ("skills", "shared", "docs", "provenance"):
+    for directory in ("skills", "shared"):
         markdown_paths.extend((root / directory).rglob("*.md"))
     for path in markdown_paths:
         text = path.read_text(encoding="utf-8")

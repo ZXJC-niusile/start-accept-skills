@@ -93,7 +93,7 @@ class RegressionScenarios(unittest.TestCase):
             errs = va.validate_ledger(bad)
             check("M7 single error for missing at", len(errs) == 1, errs)
             # M8
-            fake = tmp / "pkg"; shutil.copytree(SA, fake, ignore=shutil.ignore_patterns(".git", "dist", "evals", "__pycache__"))
+            fake = tmp / "pkg"; shutil.copytree(SA, fake, ignore=shutil.ignore_patterns(".git", "evals", "__pycache__"))
             (fake / "skills/sa-code-audit/agents/openai.yaml").write_text("")
             r = vp.check(fake, runtime_only=True)
             check("M8 empty yaml -> error not crash", not r["valid"] and any("interface mapping" in e for e in r["errors"]), r["errors"])
@@ -110,13 +110,30 @@ class RegressionScenarios(unittest.TestCase):
             # CLI arg hygiene
             check("CLI changes only for stale", run(S / "validate_artifacts.py", "state", "a.json", "b.json", cwd=tmp)[0] == 2)
             check("CLI stale rejects --root", run(S / "validate_artifacts.py", "stale", "a.json", "b.json", "--root", ".", cwd=tmp)[0] == 2)
-            # build: frontmatter break rejected; normal build ok
+            # package check rejects a broken skill name
             (fake / "skills/sa-code-audit/agents/openai.yaml").write_bytes((SA / "skills/sa-code-audit/agents/openai.yaml").read_bytes())
             sk = fake / "skills/sa-code-audit/SKILL.md"; sk.write_text(sk.read_text(encoding="utf-8").replace("name: sa-code-audit", "name: wrong"), encoding="utf-8")
-            rc, out = run(fake / "scripts/build_release.py", "--output", tmp / "b1")
-            check("build rejects broken frontmatter", rc == 1 and "structure check failed" in out, out)
-            rc, out = run(S / "build_release.py", "--output", tmp / "b2")
-            check("build succeeds on real package", rc == 0, out)
+            check("package check rejects broken frontmatter", not vp.check(fake, runtime_only=True)["valid"])
+            # complete stage cannot carry hashes for unlisted outputs
+            orphan = {"schema_version": 1, "goal": "g", "run_id": "r", "stages": {"a": {"status": "complete", "inputs": {}, "depends_on": [],
+                      "outputs": ["o.md"], "output_versions": {"o.md": "sha256:" + "0" * 64, "ghost.md": "sha256:" + "0" * 64}}}}
+            errs = va.validate_state(orphan)
+            check("orphan output_versions rejected", len(errs) == 1 and "ghost.md" in errs[0], errs)
+            malformed = json.loads(json.dumps(orphan)); malformed["stages"]["a"]["outputs"] = [{"p": 1}, ["x"]]
+            try:
+                errs = va.validate_state(malformed)
+                check("malformed outputs reported, not raised", any("outputs: path array required" in e for e in errs), errs)
+            except Exception as exc:
+                check("malformed outputs reported, not raised", False, repr(exc))
+            # handoff documented shape: arrays, not single strings
+            ho = json.loads((SA / "shared/handoff.example.json").read_text(encoding="utf-8"))
+            ho.update(conclusions="one", unknowns="u", outputs="o.md")
+            check("handoff scalar fields rejected as non-arrays", len(va.validate_handoff(ho)) == 3, va.validate_handoff(ho))
+            # handoff element types
+            ho = json.loads((SA / "shared/handoff.example.json").read_text(encoding="utf-8"))
+            check("handoff example valid", va.validate_handoff(ho) == [], va.validate_handoff(ho))
+            ho["outputs"] = [123, None]; ho["unknowns"] = [""]
+            check("handoff bad element types rejected", len(va.validate_handoff(ho)) == 3, va.validate_handoff(ho))
 
 
 if __name__ == "__main__":

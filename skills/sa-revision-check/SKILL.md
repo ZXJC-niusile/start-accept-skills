@@ -18,7 +18,7 @@ Inspect the changed manuscript or artifact before accepting response-letter clai
 
 Use [verification details](references/verification.md) to classify new observations, reopen issues or assess broader comparisons.
 
-Requested scores need a fixed scale and evidence for each change. Propose ledger history events under the [issue record rules](../../shared/ISSUES.md).
+Requested scores need a fixed scale and evidence for each change. Propose ledger history events; do not rewrite the canonical ledger yourself.
 
 ## Deliver
 

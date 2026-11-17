@@ -1,6 +1,6 @@
 ---
 name: sa-figure-production
-description: Design, create or repair publication figures for computer-science research, including motivation examples, method diagrams and data plots. Deliver editable sources and verified exports. Use for figure layout and visual audits; numerical claim analysis and manuscript-only edits belong to other skills.
+description: Design, create or repair publication figures for computer-science research, including motivation examples, method diagrams and data plots. Deliver editable sources and exports with their verification status stated. Use for figure layout and visual audits; numerical claim analysis and manuscript-only edits belong to other skills.
 ---
 
 # Figure production
